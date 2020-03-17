@@ -1,0 +1,35 @@
+$sidebar-bg : $gray-700;
+$sidebar-color:$white !default;
+$facebook       :   #3b5998;
+$twitter        :   #00acee;
+$googleplus     :   #ea4335;
+$linkedin       :   #0077B5;
+$whatsapp       :   #25D366;
+$telegram       :   #0088cc;
+$instagram      :   #c13584;
+$main-primary   :   #87a5d9;
+$main-secondary :   #221E1E;
+$mail           :   #5d5c5d;
+$login-bg       :   $gray-100 !default;
+$transparent    :   transparent;
+
+$body-bg:                   $white !default;
+$body-color:                $gray-900 !default;
+$brand-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$brand-colors: map-merge(
+                (
+                        "facebook":       $facebook,
+                        "twitter":        $twitter,
+                        "googleplus":     $googleplus,
+                        "linkedin":       $linkedin,
+                        "whatsapp":       $whatsapp,
+                        "telegram":       $telegram,
+                        "instagram":      $instagram,
+                        "mail":           $mail,
+                        "main-primary":   $main-primary,
+                        "main-secondary": $main-secondary,
+                        "transparent":    $transparent
+                ),
+                $brand-colors
+);
