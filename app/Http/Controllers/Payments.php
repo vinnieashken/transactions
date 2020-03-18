@@ -22,6 +22,20 @@ class Payments extends Controller
 
 
 			}
+        public function shortcode()
+            {
+
+                return view('admin.modules.shortcode');
+
+
+            }
+        public function services()
+            {
+
+                return view('admin.modules.service');
+
+
+            }
 		public function register($shortcode)
 			{
 				//$result		=	$this->mpesa->C2B_REGISTER($shortcode);

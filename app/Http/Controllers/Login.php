@@ -8,7 +8,7 @@ class Login extends Controller
     {
         public function index()
             {
-                return view('admin.login.login');
+                return view('admin.login.signin');
             }
         public function signin(Request $request)
             {

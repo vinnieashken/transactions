@@ -16,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','Login@index');
 Route::get('/register/{shortcode}','Payments@register');
 Route::get('/dashboard','Payments@index');
+Route::get('/shortcode','Payments@shortcode');
+Route::get('/services','Payments@services');
 Route::post('/signin','Login@signin');
