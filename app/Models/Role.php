@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User_Role extends Model
+class Role extends Model
     {
         protected $table = "user_roles";
-        public function User()
+        public function user()
             {
                 return $this->belongsTo('App\User');
             }

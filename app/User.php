@@ -41,8 +41,8 @@ class User extends Authenticatable
         {
             return $this->hasMany('App\Models\Shortcode');
         }
-    public function user_roles()
+    public function roles()
         {
-            return $this->hasMany('App\Models\User_Role');
+            return $this->hasMany('App\Models\Role');
         }
 }

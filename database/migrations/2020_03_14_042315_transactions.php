@@ -16,7 +16,7 @@ class Transactions extends Migration
                 Schema::create('transactions',function(Blueprint $table){
                     $table->id();
                     $table->string('transaction_code');
-                    $table->integer('service_id');
+                    $table->integer('service_id')->unsigned();
                     $table->string('msisdn');
                     $table->integer('has_notified')->default(0);
                     $table->timestamp('transaction_time');

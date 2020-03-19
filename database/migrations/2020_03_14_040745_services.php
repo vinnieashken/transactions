@@ -15,7 +15,7 @@ class Services extends Migration
             {
                 Schema::create('services',function(Blueprint $table){
                     $table->id();
-                    $table->integer('shortcode_id');
+                    $table->integer('shortcode_id')->unsigned();
                     $table->string('service_name');
                     $table->string('service_description');
                     $table->string('prefix');

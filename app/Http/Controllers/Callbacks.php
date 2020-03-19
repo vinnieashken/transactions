@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 class Callbacks extends Controller
 	{
   
-		public function __construct()
-			{
-				parent::__construct();
-
-			}
+		
 		public static function processB2BRequestCallback()
 			{
 		        $callbackJSONData 						=	file_get_contents('php://input');

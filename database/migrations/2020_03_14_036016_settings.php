@@ -15,7 +15,7 @@ class Settings extends Migration
             {
                 Schema::create('settings', function (Blueprint $table) {
                     $table->id();
-                    $table->integer('shortcode_id');
+                    $table->integer('shortcode_id')->unsigned();
                     $table->string('meta_name');
                     $table->string('meta_value');
                     $table->timestamps();

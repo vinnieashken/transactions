@@ -15,7 +15,7 @@ class UserRoles extends Migration
             {
                 Schema::create('user_roles',function(Blueprint $table){
                     $table->id();
-                    $table->integer('user_id');
+                    $table->integer('user_id')->unsigned();
                     $table->string('access_name');
                     $table->string('access_value');
                 });
