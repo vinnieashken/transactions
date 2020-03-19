@@ -40,32 +40,21 @@
             <li class="sidebar-header">
                Users
             </li>
-            <li class="sidebar-item">
-                <a href="#dashboards" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
-                    <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
-                </a>
-                <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse ">
-                    <li class="sidebar-item"><a class="sidebar-link" href="">Default</a></li>
 
-                </ul>
+            <li class="sidebar-item">
+                <a class="sidebar-link font-weight-bold" href="">
+                    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">User Management</span>
+                </a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link font-weight-bold" href="">
-                    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Documentation</span>
+                    <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Profile</span>
                 </a>
             </li>
             <li class="sidebar-header">
                 Settings
             </li>
-            <li class="sidebar-item">
-                <a href="#dashboards" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
-                    <i class="align-middle" data-feather="home"></i> <span class="align-middle">Shortcode</span>
-                </a>
-                <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse ">
 
-                    <li class="sidebar-item"><a class="sidebar-link" href="">Shortcode configuration</a></li>
-                </ul>
-            </li>
             <li class="sidebar-item">
                 <a class="sidebar-link font-weight-bold" href="">
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Documentation</span>
