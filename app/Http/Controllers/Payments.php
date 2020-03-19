@@ -2,37 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Shortcode;
 use App\Models\Setting;
+use App\User;
 use Illuminate\Http\Request;
 use App\Utils\Mpesa;
 
 class Payments extends Controller
 	{
 		public $mpesa;
+		public $data;
 	    public function __construct()
 			{
+                $this->middleware('auth');
+				$this->mpesa            =   new Mpesa();
 
-				$this->mpesa = new Mpesa();
 			}
 		public function index()
 			{
-
-                return view('admin.modules.dashboard');
-
-
+                $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
+                $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
+                return view('admin.modules.dashboard',$this->data);
 			}
         public function shortcode()
             {
-
-                return view('admin.modules.shortcode');
+                $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
+                $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
+                return view('admin.modules.shortcode',$this->data);
 
 
             }
         public function services()
             {
-
-                return view('admin.modules.service');
+                $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
+                $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
+                return view('admin.modules.service',$this->data);
 
 
             }

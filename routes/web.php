@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', 'Payments@index')->name('home');
 Route::get('/register/{shortcode}','Payments@register');
 Route::get('/dashboard','Payments@index');
 Route::get('/shortcode','Payments@shortcode');
@@ -22,3 +22,5 @@ Route::post('/signin','Login@signin');
 Auth::routes();
 
 Route::get('/home', 'Payments@index')->name('home');
+
+

@@ -13,12 +13,19 @@ class UsersTableSeeder extends Seeder
     {
         //
         $id = DB::table('users')->insertGetId([
-            'name' => 'denis',
-            'email' => 'denis'.'@gmail.com',
-            'password' => bcrypt('secret'),
+            'name'      =>  'Dennis Kiptoo Kiptugen',
+            'username'  =>  'caydee',
+            'email'     =>  'caydee209@gmail.com',
+            'password'  =>  bcrypt('secret'),
+            'status'    =>  true,
+
         ]);
-        
-        
-        
+        DB::table('user_roles')->insert([
+            'user_id'       =>  $id,
+            'access_name'   =>  'users',
+            'access_value'  =>  serialize(['add','update','delete'])
+        ]);
+
+
     }
 }

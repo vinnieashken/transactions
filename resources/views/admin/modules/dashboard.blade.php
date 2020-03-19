@@ -4,7 +4,8 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3>Hello, world!</h3>
+            <h3></h3>
+            <?php var_dump(unserialize($user->access_value)); ?>
         </div>
     </div>
 @endsection
