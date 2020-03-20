@@ -17,6 +17,7 @@ class Shortcode extends Migration
                     $table->id();
                     $table->string('shortcode');
                     $table->integer('status');
+                    $table->text('shortcode_type');
                     $table->integer('user_id')->unsigned();
                     $table->timestamps();
                 });
