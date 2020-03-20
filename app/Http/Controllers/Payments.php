@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\Service;
 use App\Models\Shortcode;
 use App\Models\Setting;
 use App\User;
@@ -37,6 +38,7 @@ class Payments extends Controller
             {
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
                 $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
+                $this->data['services'] =   Service::paginate(10);
                 return view('admin.modules.service',$this->data);
 
 

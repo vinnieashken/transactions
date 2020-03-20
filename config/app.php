@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Nairobi',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,9 +122,11 @@ return [
     */
 
     'key' => env('APP_KEY'),
-
     'cipher' => 'AES-256-CBC',
-
+    
+    // MPESA  STATE
+    'mpesa_state' =>env('MPESA_STATE','PRODUCTION'),
+    
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -133,6 +137,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    
 
     'providers' => [
 
