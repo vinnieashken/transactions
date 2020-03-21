@@ -43,11 +43,20 @@
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data:$(this).data('shortcode'),
                 success:function(Mess){
+                    if(Mess)
+                        {
 
-                   console.log(Mess);
+                            toastr.success('Notification started successfully.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+
+                        }
+                    else
+                        {
+                            toastr.error('Notification failed to start.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+                        }
+                    location.reload();
                 },
                 error:function (e) {
-                    console.log(e);
+                   
                 }
             });
         });
