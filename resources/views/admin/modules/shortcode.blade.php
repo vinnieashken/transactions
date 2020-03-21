@@ -105,8 +105,11 @@
                     </button>
                     <form action="{{ action('Payments@editshortcode') }}" class="form create_form" method="post">
                 </div>
-                <div class="modal-body" id="editSc">
+                <div class="modal-body">
                     @csrf
+                    <div class="form-group" id="editSc">
+
+                    </div>
                     <div class="form-group">
                         <label for="edit-shortcode">Shortcode</label>
                         <input type="text" class="form-control" name="shortcode" id="edit-shortcode">
