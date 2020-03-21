@@ -63,6 +63,7 @@ class Payments extends Controller
 
                 $start  =   $this->mpesa-> C2B_REGISTER(['consumerkey'=>$request->consumerkey,'consumersecret'=>$request->consumersecret,'shortcode'=>$request->shortcode]);
                 $data   =   (array)json_decode($start);
+                var_dump($data);
                 if(in_array("ResponseDescription",$data))
                     {
                         if($data["ResponseDescription"] == 'success')
