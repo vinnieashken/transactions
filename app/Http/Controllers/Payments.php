@@ -38,10 +38,20 @@ class Payments extends Controller
 
 
             }
+        public function saveshortcode(Request $request)
+            {
+                $shortcode                  =   new Shortcode();
+                $shortcode->shortcode       =   $request->shortcode;
+                //$shortcode->shortcode_type  =   $request->type;
+                $shortcode->consumerkey     =   trim($request->consumerkey);
+                $shortcode->consumersecret  =   trim($request->consumersecret);
+                $shortcode->user_id         =   \Auth::User()->id;
+                return $shortcode->save();
+            }
         public function editshortcode(Request $request)
             {
-
-                $shortcode                  =   Shortcode::find($request->id);
+                $shortcode                  =   new Shortcode();
+                $shortcode->find($request->id);
                 $shortcode->shortcode       =   $request->shortcode;
                 $shortcode->shortcode_type  =   $request->type;
                 $shortcode->consumerkey     =   trim($request->consumerkey);
@@ -63,16 +73,7 @@ class Payments extends Controller
                             }
                     }
             }
-        public function saveshortcode(Request $request)
-            {
-                $shortcode                  =   new Shortcode();
-                $shortcode->shortcode       =   $request->shortcode;
-                $shortcode->shortcode_type  =   $request->type;
-                $shortcode->consumerkey     =   trim($request->consumerkey);
-                $shortcode->consumersecret  =   trim($request->consumersecret);
-                $shortcode->user_id         =   \Auth::User()->id;
-                return $shortcode->save();
-            }
+
 
         public function services()
             {
