@@ -14,12 +14,12 @@
                         {
                             $('#addModal').modal('toggle');
                             frm.trigger("reset");
-                            toastr.success('Action performed successfully.', 'Shortcode', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+                            toastr.success('Action performed successfully.', 'Shortcode', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
                             location.reload();
                         }
                     else
                         {
-                            toastr.error('Action not successful.', 'Shortcode', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+                            toastr.error('Action not successful.', 'Shortcode', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
                         }
                 }
             });
@@ -48,11 +48,11 @@
                     success:function(Mess){
                         if(Mess)
                             {
-                                toastr.success('Notification started successfully.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+                                toastr.success('Notification started successfully.', 'Notification', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
                             }
                         else
                             {
-                                toastr.error('Notification failed to start.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+                                toastr.error('Notification failed to start.', 'Notification', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
                                 chk.prop("checked", false);
                             }
                         location.reload();
