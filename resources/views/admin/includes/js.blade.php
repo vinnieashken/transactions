@@ -53,7 +53,7 @@
                         else
                             {
                                 toastr.error('Notification failed to start.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
-                                chk.removeAttr('checked');
+                                chk.prop("checked", false);
                             }
                         location.reload();
                     },
