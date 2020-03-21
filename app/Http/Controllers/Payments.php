@@ -61,14 +61,15 @@ class Payments extends Controller
         public function startnotification(Request $request)
             {
 
-                $start =  $this->mpesa-> C2B_REGISTER(['consumerkey'=>$request->consumerkey,'consumersecret'=>$request->consumersecret,'shortcode'=>$request->shortcode]);
+                $start  =   $this->mpesa-> C2B_REGISTER(['consumerkey'=>$request->consumerkey,'consumersecret'=>$request->consumersecret,'shortcode'=>$request->shortcode]);
                 $data   =   json_decode($start);
                 if(in_array("ResponseDescription",$data))
                     {
                         if($data["ResponseDescription"] == 'success')
                             {
-                                Shortcode::where('id',$request->id)
-                                         ->update(['status',1]);
+                                $shortcode = Shortcode::find($request->id);
+                                $shortcode->status = 1;
+                                $shortcode->save();
                                 return true;
                             }
                     }

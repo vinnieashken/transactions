@@ -14,15 +14,4 @@ class Shortcode extends Model
             {
                 return $this->hasMany('App\Models\Setting');
             }
-        public function updatedata($where,$data)
-            {
-                $con = new Shortcode();
-                foreach($where as $key => $value)
-                    {
-                        $con->where($key,$value);
-                    }
-               return  $con->update($data);
-            }
-
-
     }
