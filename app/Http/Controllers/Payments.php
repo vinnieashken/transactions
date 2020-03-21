@@ -70,10 +70,11 @@ class Payments extends Controller
                             {
                                 $shortcode = Shortcode::find($request->id);
                                 $shortcode->status = 1;
-                                $shortcode->save();
-                                return true;
+                                return $shortcode->save();
+
                             }
                     }
+                return false;
             }
 
 
