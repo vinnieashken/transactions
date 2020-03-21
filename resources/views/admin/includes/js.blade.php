@@ -28,7 +28,7 @@
 
         $(document).on('click','.edit-shortcode',function(){
             var shortcode = $(this).data('shortcode');
-            $('#editSc').prepend('<input type="text" name="id" value="'+shortcode.id+'">');
+            $('#edit-id').val(shortcode.id);
             $('#edit-shortcode').val(shortcode.shortcode);
             $('#edit-shortcode_type').val(shortcode.shortcode_type);
             $('#edit-consumerkey').val(shortcode.consumerkey);
