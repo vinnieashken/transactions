@@ -2,13 +2,21 @@
 namespace App\Utils;
 
 use App\Utils\Config;
+use App\Utils\Config_dev;
 
 class Mpesa
 	{
 		public $mpesa;
 		public function __construct()
 			{
-				$this->mpesa =	new Config();
+			    if(config('app.env') === 'production')
+                    {
+                        $this->mpesa =	new Config();
+                    }
+                else
+                    {
+                        $this->mpesa =	new Config_dev();
+                    }
 			}
 		public function generatetoken($request)
 			{
