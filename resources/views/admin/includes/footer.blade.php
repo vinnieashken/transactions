@@ -30,6 +30,7 @@
 </div>
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 @include('admin.includes.js')
 </body>
 
