@@ -35,30 +35,33 @@
             $('#edit-consumersecret').val(shortcode.consumersecret);
             $('#editModal').modal('toggle');
         });
-        $(document).on('click','.shortcode-notify',function(){
+        $(document).on('change','.shortcode-notify',function(){
             // console.log($(this).data('shortcode'));
-            $.ajax({
-                type:'POST',
-                url:'{{ url('notify') }}',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data:$(this).data('shortcode'),
-                success:function(Mess){
-                    if(Mess)
-                        {
+            var chk  = $(this);
+            if(chk.is(':checked'))
+            {
+                $.ajax({
+                    type:'POST',
+                    url:'{{ url('notify') }}',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data:$(this).data('shortcode'),
+                    success:function(Mess){
+                        if(Mess)
+                            {
+                                toastr.success('Notification started successfully.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+                            }
+                        else
+                            {
+                                toastr.error('Notification failed to start.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
+                                chk.removeAttr('checked');
+                            }
+                        location.reload();
+                    },
+                    error:function (e) {
 
-                            toastr.success('Notification started successfully.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
-
-                        }
-                    else
-                        {
-                            toastr.error('Notification failed to start.', 'Notification', {timeOut: 5000, closeButton:true, progressBar:true, newestOnTop:true});
-                        }
-                    location.reload();
-                },
-                error:function (e) {
-                   
-                }
-            });
+                    }
+                });
+            }
         });
     });
 </script>
