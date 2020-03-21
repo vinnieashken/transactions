@@ -56,7 +56,7 @@ class Payments extends Controller
                 $shortcode->shortcode_type  =   $request->type;
                 $shortcode->consumerkey     =   trim($request->consumerkey);
                 $shortcode->consumersecret  =   trim($request->consumersecret);
-                return $shortcode->save();
+                return $shortcode->update();
             }
         public function startnotification(Request $request)
             {
