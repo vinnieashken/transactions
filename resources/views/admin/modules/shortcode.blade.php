@@ -103,7 +103,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ action('editshortcode') }}" class="form create_form" method="post">
+                    <form action="{{ url('editshortcode') }}" class="form create_form" method="post">
                 </div>
                 <div class="modal-body" id="editSc">
                     @csrf
