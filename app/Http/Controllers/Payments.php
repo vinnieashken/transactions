@@ -50,8 +50,8 @@ class Payments extends Controller
             }
         public function editshortcode(Request $request)
             {
-
-                $shortcode                  =   Shortcode::find($request->id);
+                $shortcode                  =   new Shortcode();
+                $shortcode->find($request->id);
                 $shortcode->shortcode       =   $request->shortcode;
                 $shortcode->shortcode_type  =   $request->type;
                 $shortcode->consumerkey     =   trim($request->consumerkey);
