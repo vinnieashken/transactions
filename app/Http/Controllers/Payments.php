@@ -41,20 +41,27 @@ class Payments extends Controller
         public function editshortcode(Request $request)
             {
 
-                $shot = Shortcode::where('id',$request->id)
-                                 ->update([
-                                            'shortcode'         =>  $request->shortcode,
-                                            'shortcode_type'    =>  $request->type,
-                                            'consumerkey'       =>  trim($request->consumerkey),
-                                            'consumersecret'    =>  trim($request->consumersecret)
-                                        ]);
-                return $shot;
+                $shortcode                  =   Shortcode::find($request->id);
+                $shortcode->shortcode       =   $request->shortcode;
+                $shortcode->shortcode_type  =   $request->type;
+                $shortcode->consumerkey     =   trim($request->consumerkey);
+                $shortcode->consumersecret  =   trim($request->consumersecret);
+                return $shortcode->save();
             }
         public function startnotification(Request $request)
             {
 
-                return $this->mpesa-> C2B_REGISTER(['consumerkey'=>$request->consumerkey,'consumersecret'=>$request->consumersecret,'shortcode'=>$request->shortcode]);
-
+                $start =  $this->mpesa-> C2B_REGISTER(['consumerkey'=>$request->consumerkey,'consumersecret'=>$request->consumersecret,'shortcode'=>$request->shortcode]);
+                $data   =   json_decode($start);
+                if(in_array("ResponseDescription",$data))
+                    {
+                        if($data["ResponseDescription"] == 'success')
+                            {
+                                Shortcode::where('id',$request->id)
+                                         ->update(['status',1]);
+                                return true;
+                            }
+                    }
             }
         public function saveshortcode(Request $request)
             {
