@@ -9,6 +9,7 @@ use App\Models\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use App\Utils\Mpesa;
+use Illuminate\Support\Facades\Input;
 
 class Payments extends Controller
 	{
@@ -20,20 +21,52 @@ class Payments extends Controller
 				$this->mpesa            =   new Mpesa();
 
 			}
+
 		public function index()
 			{
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
                 $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
                 return view('admin.modules.dashboard',$this->data);
 			}
+
         public function shortcode()
             {
-                $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
-                $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
+                $this->data['user']         =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
+                $this->data['userimg']      =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
+                $this->data['shortcode']    =   Shortcode::paginate(10);
                 return view('admin.modules.shortcode',$this->data);
 
 
             }
+        public function editshortcode(Request $request)
+            {
+
+                $shot = Shortcode::where('id',$request->id)
+                                 ->update([
+                                            'shortcode'         =>  $request->shortcode,
+                                            'shortcode_type'    =>  $request->type,
+                                            'consumerkey'       =>  trim($request->consumerkey),
+                                            'consumersecret'    =>  trim($request->consumersecret)
+                                        ]);
+                return $shot;
+            }
+        public function startnotification(Request $request)
+            {
+
+                return $this->mpesa-> C2B_REGISTER(['consumerkey'=>$request->consumerkey,'consumersecret'=>$request->consumersecret,'shortcode'=>$request->shortcode]);
+
+            }
+        public function saveshortcode(Request $request)
+            {
+                $shortcode                  =   new Shortcode();
+                $shortcode->shortcode       =   $request->shortcode;
+                $shortcode->shortcode_type  =   $request->type;
+                $shortcode->consumerkey     =   trim($request->consumerkey);
+                $shortcode->consumersecret  =   trim($request->consumersecret);
+                $shortcode->user_id         =   \Auth::User()->id;
+                return $shortcode->save();
+            }
+
         public function services()
             {
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
@@ -118,4 +151,5 @@ class Payments extends Controller
 		        					 ->set_output(json_encode($x));
 		        	}
 			}
+
 	}

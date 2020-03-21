@@ -10,12 +10,12 @@ class Mpesa
 			{
 				$this->mpesa =	new Config();
 			}
-		public function generatetoken()
+		public function generatetoken($request)
 			{
 				$url 	= 	$this->mpesa->token_link;
 				$curl 	= 	curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				$credentials = base64_encode($this->mpesa->ConsumerKey.':'.$this->mpesa->ConsumerSecret);
+				$credentials = base64_encode($request['consumerkey'].':'.$request['consumersecret']);
 				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Basic '.$credentials));
 				curl_setopt($curl, CURLOPT_HEADER, false);
 				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -55,7 +55,7 @@ class Mpesa
 				$url 	= $this->mpesa->checkout_processlink;
 				$curl 	= curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
                 $timestamp 	=	date('YmdHis');
                 $password 	=	base64_encode($request['shortcode'].$this->mpesa->checkout_passkey.$timestamp);
 				$curl_post_data = array(
@@ -86,7 +86,7 @@ class Mpesa
 				$url 	= $this->mpesa->checkout_querylink;
 				$curl 	= curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken())); //setting custom header
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request))); //setting custom header
                 $timestamp 		=	date('YmdHis');
                 $password 		=	base64_encode($request['$shortcode'].$this->mpesa->checkout_passkey.$timestamp);
 				$curl_post_data = array(
@@ -107,7 +107,7 @@ class Mpesa
 				$url 	= $this->mpesa->reversal_link;
 				$curl 	= curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
 				$curl_post_data = array(
 										  	'Initiator' 				=> $request['initiator'],
 										  	'SecurityCredential' 		=> $this->cert($request['credential']),
@@ -134,7 +134,7 @@ class Mpesa
 				$url 	= $this->mpesa->balance_link;
 				$curl 	= curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
 
 				$curl_post_data = array(
 										   	'Initiator' 			=> $request['initiator'],
@@ -153,14 +153,14 @@ class Mpesa
 				$curl_response = curl_exec($curl);
 				return $curl_response;
 			}
-		public function C2B_REGISTER($shortcode,$status='Completed')
+		public function C2B_REGISTER($request,$status='Completed')
 			{
 				$url 	= 	$this->mpesa->c2b_regiterUrl;
 				$curl 	= 	curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
 				$curl_post_data = array(
-										  	'ShortCode' 		=> $shortcode,
+										  	'ShortCode' 		=> $request['shortcode'],
 										  	'ResponseType' 		=> $status,
 										  	'ConfirmationURL' 	=> $this->mpesa->c2b_confirmationUrl,
 										  	'ValidationURL' 	=> $this->mpesa->c2b_validationUrl
@@ -177,7 +177,7 @@ class Mpesa
 				$url 	= $this->mpesa->c2b_transactionUrl;
 				$curl 	= curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
 				$curl_post_data = array(
 										    "ShortCode"		=>	$request['shortcode'],
 										    "CommandID"		=>	"CustomerPayBillOnline",
@@ -197,7 +197,7 @@ class Mpesa
 				$url 	= 	$this->mpesa->b2b_link;
 				$curl 	= 	curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
 				$curl_post_data = array(
 										  	'Initiator' 				=> $request['initiator'],
 										  	'SecurityCredential' 		=> $this->cert($request['credential']),
@@ -224,7 +224,7 @@ class Mpesa
 			    $url 	= $this->mpesa->b2c_link;
 				$curl 	= curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
 				$curl_post_data = array(
 										  	'InitiatorName' 		=> 	$request['initiator'],
 										  	'SecurityCredential' 	=> 	$this->cert($request['credential']),
@@ -254,7 +254,7 @@ class Mpesa
 				$url 	=	$this->mpesa->transtat_link;
 				$curl 	= 	curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken()));
+				curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$this->generatetoken($request)));
 				$curl_post_data = array(
 										  	'Initiator' 			=> $request['initiator'],
 										  	'SecurityCredential' 	=> $this->cert($request['credential']),

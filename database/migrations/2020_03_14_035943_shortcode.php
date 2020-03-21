@@ -15,9 +15,11 @@ class Shortcode extends Migration
             {
                 Schema::create('shortcodes',function (Blueprint $table){
                     $table->id();
-                    $table->string('shortcode');
-                    $table->integer('status');
+                    $table->string('shortcode')->unique();
+                    $table->boolean('status')->default(false);
                     $table->text('shortcode_type');
+                    $table->string('consumerkey');
+                    $table->string('consumersecret');
                     $table->integer('user_id')->unsigned();
                     $table->timestamps();
                 });

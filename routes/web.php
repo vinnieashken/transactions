@@ -22,5 +22,8 @@ Route::post('/signin','Login@signin');
 Auth::routes();
 
 Route::get('/home', 'Payments@index')->name('home');
+Route::post('/saveshortcode','Payments@saveshortcode');
+Route::post('/editshortcode','Payments@editshortcode');
+Route::post('/notify', 'Payments@startnotification');
 
 

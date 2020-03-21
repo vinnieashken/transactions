@@ -19,7 +19,7 @@ class Services extends Migration
                     $table->string('service_name');
                     $table->string('service_description');
                     $table->string('prefix');
-                    $table->string('organization');
+                    $table->string('verification_url')->nullable();
                     $table->text('callback_url');
                     $table->timestamps();
 

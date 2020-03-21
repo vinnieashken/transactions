@@ -30,6 +30,7 @@
 </div>
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
+@include('admin.includes.js')
 </body>
 
 </html>
