@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class Callbacks extends Controller
 	{
-  
-		
+
+
 		public static function processB2BRequestCallback()
 			{
 		        $callbackJSONData 						=	file_get_contents('php://input');
@@ -42,7 +43,7 @@ class Callbacks extends Controller
 					            "B2CRecipientIsRegisteredCustomer"		=>	$B2CRecipientIsRegisteredCustomer
 		        			);
 
-		      
+
     		}
     	public static function processB2CRequestCallback()
     		{
@@ -78,7 +79,7 @@ class Callbacks extends Controller
                                 "currency"							=>	$currency
                             );
 
-			 
+
 
     		}
     	public static function processC2BRequestValidation()
@@ -114,8 +115,11 @@ class Callbacks extends Controller
                                 "transID"			=>	$transID,
                                 "transactionType"	=>	$transactionType
                             );
-		       
-    		}    
+                $callback = Service::where('prefix',getprefix($result["invoiceNumber"]) )
+                                    ->where('shortcode',$result["businessShortCode"])
+                                    ->first()
+                                    ->prefix;
+    		}
     	public static function processC2BRequestConfirmation()
     		{
 		        $callbackJSONData 	=	file_get_contents('php://input');
@@ -149,7 +153,10 @@ class Callbacks extends Controller
                                     "transID"			=>	$transID,
                                     "transactionType"	=>	$transactionType
                             );
-              
+                $service_id = Service::where('prefix',getprefix($result["invoiceNumber"]) )
+                                     ->where('shortcode',$result["businessShortCode"])
+                                     ->first()
+                                     ->id;
 
    			}
     	public static function processAccountBalanceRequestCallback()
@@ -176,7 +183,7 @@ class Callbacks extends Controller
                                   "resultType"                  =>$resultType
                              );
 
-		       
+
 
 
 		    }
@@ -199,7 +206,7 @@ class Callbacks extends Controller
                                   "transactionID"               =>$transactionID,
                                   "originatorConversationID"    =>$originatorConversationID
                               );
-              
+
 
 	    	}
     	public static function processSTKPushRequestCallback()
@@ -227,8 +234,8 @@ class Callbacks extends Controller
                                     "transactionDate"=>$transactionDate,
                                     "phoneNumber"=>$phoneNumber
                                 );
-                
-		       
+
+
 		    }
     	public static function processSTKPushQueryRequestCallback()
 	    	{
@@ -250,7 +257,7 @@ class Callbacks extends Controller
                                     "resultDesc" 			=>	$resultDesc
                             );
 
-		       
+
 		    }
     	public static function processTransactionStatusRequestCallback()
 	    	{
@@ -298,5 +305,5 @@ class Callbacks extends Controller
 
 		        return json_encode($result);
 		    }
-      
+
 }

@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Service;
 use App\Models\Shortcode;
 use App\Models\Setting;
+use App\Models\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use App\Utils\Mpesa;
@@ -40,23 +41,71 @@ class Payments extends Controller
             }
         public function saveshortcode(Request $request)
             {
-                $shortcode                  =   new Shortcode();
-                $shortcode->shortcode       =   $request->shortcode;
-                $shortcode->shortcode_type  =   $request->type;
-                $shortcode->consumerkey     =   trim($request->consumerkey);
-                $shortcode->consumersecret  =   trim($request->consumersecret);
-                $shortcode->user_id         =   \Auth::User()->id;
-                return $shortcode->save();
+                $validatedData = $request->validate([
+                    'shortcode'         =>  'required|unique:shortcodes|integer',
+                    'type'              =>  'required',
+                    'consumerkey'       =>  'required',
+                    'consumersecret'    =>  'required',
+                    'passkey'           =>  'nullable'
+                ]);
+
+                if($validatedData)
+                    {
+                        $shortcode                  =   new Shortcode();
+                        $shortcode->shortcode       =   $request->shortcode;
+                        $shortcode->shortcode_type  =   $request->type;
+                        $shortcode->consumerkey     =   trim($request->consumerkey);
+                        $shortcode->consumersecret  =   trim($request->consumersecret);
+                        $shortcode->passkey         =   trim($request->passkey);
+                        $shortcode->user_id         =   \Auth::User()->id;
+                        $req                        =   $shortcode->save();
+                        if($req)
+                            {
+                                return array('status'=>TRUE,'msg'=>'Shortcode insert successful','header'=>'shortcode');
+                            }
+                        else
+                            {
+                                return array('status'=>False,'msg'=>'Shortcode insert not successful','header'=>'shortcode');
+                            }
+                    }
+                else
+                    {
+                       return array('status'=>FALSE,'msg'=>$validatedData->errors());
+                    }
+
             }
         public function editshortcode(Request $request)
             {
-                echo $request->id;
-                $shortcode                  =   Shortcode::find($request->id);
-                $shortcode->shortcode       =   $request->shortcode;
-                $shortcode->shortcode_type  =   $request->type;
-                $shortcode->consumerkey     =   trim($request->consumerkey);
-                $shortcode->consumersecret  =   trim($request->consumersecret);
-                return $shortcode->save();
+                $validatedData = $request->validate([
+                    'shortcode'         =>  'required|integer',
+                    'type'              =>  'required',
+                    'consumerkey'       =>  'required',
+                    'consumersecret'    =>  'required',
+                    'passkey'           =>  'nullable'
+                ]);
+                if($validatedData)
+                    {
+                        $shortcode                  =   Shortcode::find($request->id);
+                        $shortcode->shortcode       =   $request->shortcode;
+                        $shortcode->shortcode_type  =   $request->type;
+                        $shortcode->consumerkey     =   trim($request->consumerkey);
+                        $shortcode->consumersecret  =   trim($request->consumersecret);
+                        $shortcode->passkey         =   trim($request->passkey);
+                        $req                        =   $shortcode->save();
+
+                        if($req)
+                            {
+                                return array('status'=>TRUE,'msg'=>'Shortcode edit successful','header'=>'shortcode');
+                            }
+                        else
+                            {
+                                return array('status'=>False,'msg'=>'Shortcode edit not successful','header'=>'shortcode');
+                            }
+                    }
+                else
+                    {
+                        return array('status'=>FALSE,'msg'=>$validatedData->errors());
+                    }
             }
         public function startnotification(Request $request)
             {
@@ -73,6 +122,7 @@ class Payments extends Controller
                                 return $shortcode->save();
 
                             }
+                        return false;
                     }
                 return false;
             }
@@ -86,6 +136,156 @@ class Payments extends Controller
                 return view('admin.modules.service',$this->data);
 
 
+            }
+        public function alltrans(Request $request)
+            {
+                $columns = array(
+                                    0   =>  'service_id',
+                                    1   =>  'transaction_code',
+                                    2   =>  'mpesa_code',
+                                    3   =>  'amount',
+                                    4   =>  'msisdn',
+                                    5   =>  'transaction_time'
+                                );
+
+                $totalData      = Transaction::count();
+
+                $totalFiltered  = $totalData;
+
+                $limit  =   $request->input('length');
+                $start  =   $request->input('start');
+                $order  =   $columns[$request->input('order.0.column')];
+                $dir    =   $request->input('order.0.dir');
+
+                if(empty($request->input('search.value')))
+                    {
+                        $posts = Transaction::offset($start)
+                                     ->limit($limit)
+                                     ->orderBy($order,$dir)
+                                     ->get();
+                    }
+                else
+                    {
+                        $search =   $request->input('search.value');
+                        $serviceid  =   Service::where('service_name','LIKE',"%{$search}%")->first()->id;
+
+                        $posts  =   Transaction::where('transaction_code','LIKE',"%{$search}%")
+                                              ->orWhere('mpesa_code', 'LIKE',"%{$search}%")
+                                              ->orWhere('msisdn', 'LIKE',"%{$search}%")
+                                              ->orWhere('amount', 'LIKE',"%{$search}%")
+                                              ->orWhere('service_id','LIKE',"%{$serviceid}%")
+                                              ->offset($start)
+                                              ->limit($limit)
+                                              ->orderBy($order,$dir)
+                                              ->get();
+
+                        $totalFiltered = Transaction::where('transaction_code','LIKE',"%{$search}%")
+                                             ->orWhere('mpesa_code', 'LIKE',"%{$search}%")
+                                             ->orWhere('msisdn', 'LIKE',"%{$search}%")
+                                             ->orWhere('amount', 'LIKE',"%{$search}%")
+                                             ->orWhere('service_id','LIKE',"%{$serviceid}%")
+                                             ->count();
+                    }
+
+                $data = array();
+                if(!empty($posts))
+                    {
+                        foreach ($posts as $post)
+                            {
+                                $nestedData['service_id']       =   Service::where('id',$post->service_id)->first()->service_name;
+                                $nestedData['transaction_code'] =   $post->transaction_code;
+                                $nestedData['mpesa_code']       =   $post->mpesa_code;
+                                $nestedData['amount']           =   $post->amount;
+                                $nestedData['msisdn']           =   $post->msisdn;
+                                $nestedData['transaction_time'] =   date('j M Y h:i a',strtotime($post->transaction_time));
+                                $data[] = $nestedData;
+
+                            }
+                    }
+
+                $json_data = array(
+                                        "draw"            => intval($request->input('draw')),
+                                        "recordsTotal"    => intval($totalData),
+                                        "recordsFiltered" => intval($totalFiltered),
+                                        "data"            => $data
+                                    );
+
+                echo json_encode($json_data);
+            }
+        public function transaction()
+            {
+                $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
+                $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
+                $this->data['services'] =   Service::paginate(10);
+                return view('admin.modules.transaction',$this->data);
+            }
+        public function addservice(Request $request)
+            {
+                $validatedData = $request->validate([
+                    'prefix'                =>  'nullable|max:4|alpha',
+                    'shortcode'             =>  'required|integer',
+                    'service_name'          =>  'required',
+                    'description'           =>  'required',
+                    'verification_callback' =>  'nullable|url',
+                    'response_callback'     =>  'required|url'
+                ]);
+                if($validatedData)
+                    {
+                        $service                      = new Service();
+                        $service->prefix              = $request->prefix;
+                        $service->shortcode_id        = $request->shortcode;
+                        $service->service_name        = $request->service_name;
+                        $service->service_description = $request->description;
+                        $service->verification_url    = $request->verification_callback;
+                        $service->callback_url        = $request->response_callback;
+                        $req                          = $service->save();
+                        if($req)
+                            {
+                                return array('status'=>TRUE,'msg'=>'Service created successful','header'=>'Service');
+                            }
+                        else
+                            {
+                                return array('status'=>False,'msg'=>'Service creation failed','header'=>'Service');
+                            }
+                    }
+                else
+                    {
+                        return array('status'=>FALSE,'msg'=>$validatedData->errors());
+                    }
+            }
+        public function editservice(Request $request)
+            {
+                $validatedData = $request->validate([
+                    'prefix'                =>  'nullable|max:4|alpha',
+                    'shortcode'             =>  'required|integer',
+                    'service_name'          =>  'required',
+                    'description'           =>  'required',
+                    'verification_callback' =>  'nullable|url',
+                    'response_callback'     =>  'required|url'
+                ]);
+                if($validatedData)
+                    {
+                        $service                        =   Service::find($request->id);
+                        $service->shortcode_id          =   $request->shortcode;
+                        $service->prefix                =   $request->prefix;
+                        $service->service_name          =   $request->service_name;
+                        $service->service_description   =   $request->description;
+                        $service->verification_url      =   $request->verification_callback;
+                        $service->callback_url          =   $request->response_callback;
+                        $req                            =   $service->save();
+                        if($req)
+                            {
+                                return array('status'=>TRUE,'msg'=>'Service created successful','header'=>'Service');
+                            }
+                        else
+                            {
+                                return array('status'=>False,'msg'=>'Service creation failed','header'=>'Service');
+                            }
+                    }
+                else
+                    {
+                        return array('status'=>FALSE,'msg'=>$validatedData->errors());
+                    }
             }
 		public function register($shortcode)
 			{

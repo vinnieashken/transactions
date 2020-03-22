@@ -67,10 +67,10 @@
                 </div>
                 <div class="modal-body">
 
-                        <div class="form-group">
-                            <label for="add-shortcode">Shortcode</label>
-                            <input type="text" class="form-control" name="shortcode" id="add-shortcode">
-                        </div>
+                    <div class="form-group">
+                        <label for="add-shortcode">Shortcode</label>
+                        <input type="text" class="form-control" name="shortcode" id="add-shortcode">
+                    </div>
                     <div class="form-group">
                         <label for="add-shortcode_type">Type</label>
                         <input type="text" class="form-control" name="type" id="add-shortcode_type">
@@ -83,8 +83,10 @@
                         <label for="add-consumersecret">Consumer Secret</label>
                         <input type="text" class="form-control" name="consumersecret" id="add-consumersecret">
                     </div>
-
-
+                    <div class="form-group">
+                        <label for="add-passkey">Passkey</label>
+                        <input type="text" class="form-control" name="passkey" id="add-passkey">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>
@@ -107,7 +109,7 @@
                 </div>
                 <div class="modal-body" id="editSc">
                     @csrf
-                    <input type="text" name="id" id="edit-id">
+                    <input type="hidden" name="id" id="edit-id">
                     <div class="form-group">
                         <label for="edit-shortcode">Shortcode</label>
                         <input type="text" class="form-control" name="shortcode" id="edit-shortcode">
@@ -123,6 +125,10 @@
                     <div class="form-group">
                         <label for="edit-consumersecret">Consumer Secret</label>
                         <input type="text" class="form-control" name="consumersecret" id="edit-consumersecret">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-passkey">Passkey</label>
+                        <input type="text" class="form-control" name="passkey" id="edit-passkey">
                     </div>
                 </div>
                 <div class="modal-footer">

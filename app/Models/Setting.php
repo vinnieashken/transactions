@@ -9,9 +9,9 @@ class Setting extends Model
         protected $table = 'settings';
 
         public function shortcode()
-        {
-            return $this->belongsTo('App\Models\Shortcode');
-        }
+            {
+                return $this->belongsTo('App\Models\Shortcode');
+            }
     }
 
 

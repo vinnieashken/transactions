@@ -14,4 +14,8 @@ class Shortcode extends Model
             {
                 return $this->hasMany('App\Models\Setting');
             }
+        public function service()
+            {
+                return $this->hasMany('App\Models\Service');
+            }
     }

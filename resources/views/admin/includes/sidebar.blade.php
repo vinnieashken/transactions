@@ -25,6 +25,12 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a class="sidebar-link font-weight-bold" href="{{ url('transaction') }}">
+                    <i class="align-middle" data-feather="briefcase"></i>
+                    <span class="align-middle">Transactions</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="#dashboards" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
                     <i class="align-middle" data-feather="shield"></i>
                     <span class="align-middle">Financial Services</span>
@@ -34,7 +40,6 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="">Refund</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="">Account Balance</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="">B2B</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="">Transactions</a></li>
                 </ul>
             </li>
             <li class="sidebar-header">

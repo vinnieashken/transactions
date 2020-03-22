@@ -18,12 +18,14 @@ Route::get('/dashboard','Payments@index');
 Route::get('/shortcode','Payments@shortcode');
 Route::get('/services','Payments@services');
 Route::post('/signin','Login@signin');
-
+Route::get('/transaction','Payments@transaction');
+Route::post('/alltrans','Payments@alltrans');
 Auth::routes();
-
 Route::get('/home', 'Payments@index')->name('home');
 Route::post('/saveshortcode','Payments@saveshortcode');
 Route::post('/editshortcode','Payments@editshortcode');
 Route::post('/notify', 'Payments@startnotification');
+Route::post('/addservice','Payments@addservice');
+Route::post('/editservice','Payments@editservice');
 
 

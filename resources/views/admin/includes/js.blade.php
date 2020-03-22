@@ -9,18 +9,30 @@
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data:$(this).serialize(),
                 success:function(Mess){
-
-                    if(Mess)
+                    if(Mess.status == true)
                         {
                             $('#addModal').modal('toggle');
-                            frm.trigger("reset");
-                            toastr.success('Action performed successfully.', 'Shortcode', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
-                            location.reload();
+
+                            toastr.success(Mess.msg, '', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true, onHidden: function () {
+                                    frm.trigger("reset");
+                                    window.location.reload();
+                                }});
+
+
                         }
                     else
                         {
-                            toastr.error('Action not successful.', 'Shortcode', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
+                            toastr.error(Mess.msg, '', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
                         }
+                },
+                error:function (f) {
+                        $.each(f.responseJSON.errors, function (key, val) {
+                            toastr.error(val[0], f.responseJSON.message, {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true,onHidden: function () {
+                                    window.location.reload();
+                                }});
+                        });
+
+
                 }
             });
 
@@ -33,6 +45,20 @@
             $('#edit-shortcode_type').val(shortcode.shortcode_type);
             $('#edit-consumerkey').val(shortcode.consumerkey);
             $('#edit-consumersecret').val(shortcode.consumersecret);
+            $('#edit-passkey').val(shortcode.passkey)
+            $('#editModal').modal('toggle');
+        });
+
+        $(document).on('click','.edit-service',function(e){
+            e.preventDefault();
+            var service  =  $(this).data('service');
+            $('#edit-id').val(service.id);
+            $('#edit-shortcode option[value="'+service.shortcode_id+'"]').attr('selected','selected');
+            $('#edit-code-prefix').val(service.prefix);
+            $('#edit-service-name').val(service.service_name);
+            $('#edit-description').summernote('code',service.service_description);
+            $('#edit-verification-callback').val(service.verification_url);
+            $('#edit-response-callback').val(service.callback_url);
             $('#editModal').modal('toggle');
         });
         $(document).on('change','.shortcode-notify',function(){
@@ -52,16 +78,44 @@
                             }
                         else
                             {
-                                toastr.error('Notification failed to start.', 'Notification', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true});
-                                chk.prop("checked", false);
+                                toastr.error('Notification failed to start.', 'Notification', {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true,onHidden: function () {
+                                        chk.prop("checked", false);
+                                    }});
+
                             }
-                        location.reload();
+
                     },
                     error:function (e) {
+                        toastr.error(e.responseJSON.error, e.responseJSON.message, {timeOut: 1000, closeButton:true, progressBar:true, newestOnTop:true,onHidden: function () {
+                                chk.prop("checked", false);
+                            }});
 
                     }
                 });
             }
+        });
+
+
+
+
+        $('#transactions').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                "url": "{{ url('alltrans') }}",
+                "dataType": "json",
+                "type": "POST",
+                "data":{ _token: "{{csrf_token()}}"}
+            },
+            "columns": [
+                { "data": "service_id" },
+                { "data": "transaction_code" },
+                { "data": "mpesa_code" },
+                { "data": "amount" },
+                { "data": "msisdn" },
+                { "data": "transaction_time" }
+            ]
+
         });
     });
 
@@ -70,5 +124,26 @@
     $('.summernote').summernote({
         height: 150  //set editable area's height
 
+    }).on('summernote.change', function(we, contents, $editable) {
+        $(this).val(contents);
     });
+    $('#datatables-basic').DataTable({
+        responsive: true,
+    });
+    // Datatables with Buttons
+    var datatablesButtons = $('#datatables-buttons').DataTable({
+        lengthChange: !1,
+        buttons: ["copy", "print"],
+        responsive: true,
+        order: [[ 0, "asc" ]]
+    });
+    datatablesButtons.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
+
+    var datatablesButtonsDesc = $('#datatables-buttons-desc').DataTable({
+        lengthChange: !1,
+        buttons: ["copy", "print"],
+        responsive: true,
+        order: [[ 0, "desc" ], [ 1, "desc" ]]
+    });
+    datatablesButtonsDesc.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
 </script>

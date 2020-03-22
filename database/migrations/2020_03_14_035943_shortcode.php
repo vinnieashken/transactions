@@ -20,6 +20,7 @@ class Shortcode extends Migration
                     $table->text('shortcode_type');
                     $table->string('consumerkey');
                     $table->string('consumersecret');
+                    $table->string('passkey');
                     $table->integer('user_id')->unsigned();
                     $table->timestamps();
                 });
