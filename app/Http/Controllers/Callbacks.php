@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 
-class Callbacks extends Controller
+class Callbacks
 	{
-
-
-		public static function processB2BRequestCallback()
+	  	public function processB2BRequestCallback()
 			{
 		        $callbackJSONData 						=	file_get_contents('php://input');
 		        $callbackData 							=	json_decode($callbackJSONData)->Result;
@@ -45,7 +43,7 @@ class Callbacks extends Controller
 
 
     		}
-    	public static function processB2CRequestCallback()
+    	public function processB2CRequestCallback()
     		{
 			    $callbackJSONData	 				=	file_get_contents('php://input');
 			    $callbackData 						= 	json_decode($callbackJSONData);
@@ -82,10 +80,11 @@ class Callbacks extends Controller
 
 
     		}
-    	public static function processC2BRequestValidation()
+    	public function C2BRequestValidation(Request $request)
     		{
+				
 		        $callbackJSONData 	=	file_get_contents('php://input');
-		        $callbackData 		=	json_decode($callbackJSONData);
+		        $callbackData 		=	json_decode($callbackJSONData);							
 		        $transactionType 	=	$callbackData->TransactionType;
 		        $transID 			=	$callbackData->TransID;
 		        $transTime 			=	$callbackData->TransTime;
@@ -115,12 +114,30 @@ class Callbacks extends Controller
                                 "transID"			=>	$transID,
                                 "transactionType"	=>	$transactionType
                             );
-                $callback = Service::where('prefix',getprefix($result["invoiceNumber"]) )
+                $callback = Service::where('prefix',getprefix($result["billRefNumber"]) )
                                     ->where('shortcode',$result["businessShortCode"])
                                     ->first()
-                                    ->prefix;
+									->validation_url;
+				if($callback == "")
+					{
+						return array("ResultCode"=>0,"ResultDesc"=>"Accepted");
+					}
+				else
+					{
+						$check = $this->curl_post($callback,['transcode'=>$result["billRefNumber"],"amount"=>$result["orgAccountBalance"]]);
+						if($check->status)
+							{
+								return array("ResultCode"=>0,"ResultDesc"=>"Accepted");
+							}
+						else
+							{
+								return	array("ResultCode"=>3895,"ResultDesc"=>$check->message);
+							}	
+					}						
+				
+				
     		}
-    	public static function processC2BRequestConfirmation()
+    	public function processC2BRequestConfirmation()
     		{
 		        $callbackJSONData 	=	file_get_contents('php://input');
 		        $callbackData 		=	json_decode($callbackJSONData);
@@ -153,13 +170,13 @@ class Callbacks extends Controller
                                     "transID"			=>	$transID,
                                     "transactionType"	=>	$transactionType
                             );
-                $service_id = Service::where('prefix',getprefix($result["invoiceNumber"]) )
+                $service_id = Service::where('prefix',getprefix($result["billRefNumber"]) )
                                      ->where('shortcode',$result["businessShortCode"])
                                      ->first()
                                      ->id;
-
+                 return $result;
    			}
-    	public static function processAccountBalanceRequestCallback()
+    	public function processAccountBalanceRequestCallback()
     		{
 		        $callbackJSONData=file_get_contents('php://input');
 		        $callbackData=json_decode($callbackJSONData);
@@ -187,10 +204,12 @@ class Callbacks extends Controller
 
 
 		    }
-    	public static function processReversalRequestCallBack()
+    	public function processReversalRequestCallBack()
 	    	{
-		        $callbackJSONData=file_get_contents('php://input');
-		        $callbackData=json_decode($callbackJSONData);
+
+                $callbackJSONData=file_get_contents('php://input');
+
+                $callbackData = json_decode($callbackJSONData);
 		        $resultType=$callbackData->Result->ResultType;
 		        $resultCode=$callbackData->Result->ResultCode;
 		        $resultDesc=$callbackData->Result->ResultDesc;
@@ -209,7 +228,7 @@ class Callbacks extends Controller
 
 
 	    	}
-    	public static function processSTKPushRequestCallback()
+    	public function processSTKPushRequestCallback()
 	    	{
 		        $callbackJSONData=file_get_contents('php://input');
 		        $callbackData=json_decode($callbackJSONData)->Body;
@@ -237,7 +256,7 @@ class Callbacks extends Controller
 
 
 		    }
-    	public static function processSTKPushQueryRequestCallback()
+    	public function processSTKPushQueryRequestCallback()
 	    	{
 		        $callbackJSONData 		=	file_get_contents('php://input');
 		        $callbackData 			=	json_decode($callbackJSONData);
@@ -259,7 +278,7 @@ class Callbacks extends Controller
 
 
 		    }
-    	public static function processTransactionStatusRequestCallback()
+    	public function processTransactionStatusRequestCallback()
 	    	{
 		        $callbackJSONData=file_get_contents('php://input');
 		        $callbackData=json_decode($callbackJSONData);
@@ -305,5 +324,17 @@ class Callbacks extends Controller
 
 		        return json_encode($result);
 		    }
-
+		public function curl_post($url,$data)
+			{
+				$ch 	= 	curl_init();
+				curl_setopt($ch, CURLOPT_URL,$url);
+				curl_setopt($ch, CURLOPT_POST,1);
+				 curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+				curl_setopt($ch, CURLOPT_VERBOSE,true);
+				$res 	= 	curl_exec ($ch);
+				curl_close($ch);
+				return $res;
+			}
 }
