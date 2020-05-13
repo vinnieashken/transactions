@@ -26,6 +26,7 @@ class Config_dev
 		public $transtat_link			=	'https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query';
 		public $b2b_link				= 	'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest';
 		public $b2c_link				=	'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest';
+        public $c2b_transactionUrl      =   'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
 
         public function __construct()
             {
