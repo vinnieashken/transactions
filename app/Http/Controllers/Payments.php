@@ -362,5 +362,8 @@ class Payments extends Controller
 		        					 ->set_output(json_encode($x));
 		        	}
 			}
-
+        public function  c2btest()
+            {
+                $this->mpesa->C2B(['shortcode'=>'505604','amount'=>'25','msisdn'=>'254713154085','ref'=>'EPK200']);
+            }    
 	}

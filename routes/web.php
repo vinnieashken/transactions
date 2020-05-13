@@ -27,5 +27,6 @@ Route::post('/editshortcode','Payments@editshortcode');
 Route::post('/notify', 'Payments@startnotification');
 Route::post('/addservice','Payments@addservice');
 Route::post('/editservice','Payments@editservice');
+Route::get('/c2btest','Paymenta@c2btest');
 
 
