@@ -18,7 +18,7 @@ class Payments extends Controller
 		public $data;
 	    public function __construct()
 			{
-                $this->middleware('auth');
+                // $this->middleware('auth');
 				$this->mpesa            =   new Mpesa();
 
 			}
