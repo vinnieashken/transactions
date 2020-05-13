@@ -18,7 +18,7 @@ class Payments extends Controller
 		public $data;
 	    public function __construct()
 			{
-                // $this->middleware('auth');
+                $this->middleware('auth');
 				$this->mpesa            =   new Mpesa();
 
 			}
@@ -361,9 +361,5 @@ class Payments extends Controller
 						$this->output->set_content_type('application/json')
 		        					 ->set_output(json_encode($x));
 		        	}
-			}
-        public function  c2btest()
-            {
-                $this->mpesa->C2B(['shortcode'=>'505604','amount'=>'25','msisdn'=>'254713154085','ref'=>'EPK200']);
-            }    
+			}       
 	}
