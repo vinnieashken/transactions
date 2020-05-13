@@ -5,35 +5,37 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class Transactions extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
     {
-        /**
-         * Run the migrations.
-         *
-         * @return void
-         */
-        public function up()
-            {
-                Schema::create('transactions',function(Blueprint $table){
-                    $table->id();
-                    $table->string('transaction_code');
-                    $table->string('mpesa_code');
-                    $table->integer('service_id')->unsigned();
-                    $table->string('msisdn');
-                    $table->integer('has_notified')->default(0);
-                    $table->timestamp('transaction_time');
-                    $table->decimal('amount',8,2);
-                    $table->timestamps();
-                });
+        Schema::create('transactions',function(Blueprint $table){
+            $table->id();
+            $table->string("account");
+            $table->string("transaction_code");
+            $table->integer('shortcode_id')->unsigned();
+            $table->string('msisdn');
+            $table->integer('has_notified')->default(0);
+            $table->string('channel');
+            $table->string('source');
+            $table->timestamp('trans_time');
+            $table->decimal('amount',8,2);
+            $table->timestamps();
+        });
 
-            }
-
-        /**
-         * Reverse the migrations.
-         *
-         * @return void
-         */
-        public function down()
-            {
-                Schema::dropIfExists('transactions');
-            }
     }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('transactions');
+    }
+}
