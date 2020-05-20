@@ -142,7 +142,7 @@ class Payments extends Controller
         public function alltrans(Request $request)
             {
                 $columns = array(
-                                    0   =>  'service_id',
+                                    0   =>  'customer_name',
                                     1   =>  'transaction_code',
                                     2   =>  'mpesa_code',
                                     3   =>  'amount',
