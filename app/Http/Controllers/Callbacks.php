@@ -527,10 +527,9 @@ class Callbacks
 
             }
 
-            $transaction    =   new Transaction();
-            $transaction->append($data);
 
-            Log::notice($transaction);
+
+            Log::notice($data);
             $this->emailnotify($detail);
             $this->postdata($url,$param);
         }
