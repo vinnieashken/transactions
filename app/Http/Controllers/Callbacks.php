@@ -88,7 +88,7 @@ class Callbacks
 
         $callbackJSONData 	=	file_get_contents('php://input');
         $callbackData 		=	json_decode($callbackJSONData);
-        Log::error($callbackJSONData);
+
         $transactionType 	=	$callbackData->TransactionType;
         $transID 			=	$callbackData->TransID;
         $transTime 			=	$callbackData->TransTime;
@@ -118,7 +118,7 @@ class Callbacks
             "transID"			=>	$transID,
             "transactionType"	=>	$transactionType
         );
-        Log::error($request);
+        Log::error($result);
         $callback = Service::where('prefix',getprefix($result["billRefNumber"]) )
             ->where('shortcode',$result["businessShortCode"])
             ->first()
@@ -145,7 +145,7 @@ class Callbacks
     public function processC2BRequestConfirmation()
     {
         $callbackJSONData 	=	file_get_contents('php://input');
-        Log::info($callbackJSONData);
+
         $callbackData 		=	json_decode($callbackJSONData);
         $transactionType 	=	$callbackData->TransactionType;
         $transID 			= 	$callbackData->TransID;
@@ -561,9 +561,9 @@ class Callbacks
     {
         $client = new \GuzzleHttp\Client();
         foreach($url as $link)
-        {
-            $request = $client->post($link,  ['body'=>$data]);
-        }
+            {
+                $request = $client->post($link,  ['form_params'=>$data]);
+            }
         $response = $request->send();
         echo $response;
     }
