@@ -170,7 +170,7 @@ class Payments extends Controller
                     {
 
                         $search     =   $request->input('search.value');
-                        $shortcode  =   Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id;
+                        $shortcode  =   (Shortcode::where('shortcode','LIKE',"%{$search}%")->first())?Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id:FALSE;
 
                         $posts  =   Transaction::where('transaction_code','LIKE',"%{$search}%")
                                               ->orWhere('mpesa_code', 'LIKE',"%{$search}%")
