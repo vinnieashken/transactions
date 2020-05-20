@@ -118,7 +118,7 @@ class Callbacks
             "transID"			=>	$transID,
             "transactionType"	=>	$transactionType
         );
-        Log::error($result);
+
         $callback = Service::where('prefix',getprefix($result["billRefNumber"]) )
             ->where('shortcode',$result["businessShortCode"])
             ->first()
@@ -177,7 +177,7 @@ class Callbacks
                                             "transID"			=>	$transID,
                                             "transactionType"	=>	$transactionType
                                     );
-        Log::alert($result);
+
         $this->epaper_integrate(
             [   'msisdn'        =>  $MSISDN,
                 'ref'           =>  $transID,
@@ -345,36 +345,34 @@ class Callbacks
     }
     public function epaper_integrate($detail)
     {
-        Log::info($detail);
         try {
-            $moneyfromnumber    =   $detail['msisdn'];
-            $ref                =   $detail['ref'];
-            $amount             =   $detail['amount'];
-            $account            =   $detail['account'];
-            $userpass           =   '434345343!@@!663535!@dgd53';
-            $channel            =   $detail['trans_type'];
-            $ticket_hub         =   trim(substr($account, 0, 2));
-            $ticket_hub         =   trim(strtoupper($ticket_hub));
-            $ticket_hub         =   trim(strip_tags($ticket_hub));
-            $msape              =   trim(substr($account, 0, 2));
-            $msape              =   trim(strtoupper($msape));
-            $msape              =   trim(strip_tags($msape));
-            $epaper             =   trim(strip_tags($account));
-            $epaper             =   trim(substr($epaper, 0, 3));
-            $epaper             =   trim(strtoupper($epaper));
-            $digger             =   trim(strip_tags($account));
-            $digger             =   trim(substr($digger, 0, 1));
-            $digger             =   trim(strtoupper($digger));
-            $data               =   array(
-                "shortcode_id"      =>  Shortcode::where('shortcode',$detail['shortcode'])->first()->id,
-                "msisdn"            =>  $moneyfromnumber,
-                "amount"            =>  $amount,
-                "account"           =>  $account,
-                "channel"           =>  $channel,
-                "transaction_code"  =>  $ref,
-                "trans_type"        =>  $detail['trans_type'],
-                "trans_time"        =>  $detail["trans_time"]
-            );
+                $moneyfromnumber    =   $detail['msisdn'];
+                $ref                =   $detail['ref'];
+                $amount             =   $detail['amount'];
+                $account            =   $detail['account'];
+                $userpass           =   '434345343!@@!663535!@dgd53';
+                $channel            =   $detail['trans_type'];
+                $ticket_hub         =   trim(substr($account, 0, 2));
+                $ticket_hub         =   trim(strtoupper($ticket_hub));
+                $ticket_hub         =   trim(strip_tags($ticket_hub));
+                $msape              =   trim(substr($account, 0, 2));
+                $msape              =   trim(strtoupper($msape));
+                $msape              =   trim(strip_tags($msape));
+                $epaper             =   trim(strip_tags($account));
+                $epaper             =   trim(substr($epaper, 0, 3));
+                $epaper             =   trim(strtoupper($epaper));
+                $digger             =   trim(strip_tags($account));
+                $digger             =   trim(substr($digger, 0, 1));
+                $digger             =   trim(strtoupper($digger));
+                $data               =   array(
+                                                "shortcode_id"      =>  Shortcode::where('shortcode',$detail['shortcode'])->first()->id,
+                                                "msisdn"            =>  $moneyfromnumber,
+                                                "amount"            =>  $amount,
+                                                "account"           =>  $account,
+                                                "channel"           =>  $channel,
+                                                "transaction_code"  =>  $ref,
+                                                "trans_time"        =>  $detail["trans_time"]
+                                            );
 
             if ($digger == "D")
             {
@@ -538,7 +536,7 @@ class Callbacks
     }
     public function emailnotify($dt)
     {
-        Log::info($dt);
+
         //For all payments done, please sent a notification with proper caption to onlineaccounts@standardmedia.co.ke
         $efrom      =   "online@standardmedia.co.ke";
         $eto        =   "onlineaccounts@standardmedia.co.ke";
@@ -563,7 +561,7 @@ class Callbacks
         foreach($url as $link)
             {
                 $request = $client->post($link,  ['form_params'=>$data]);
-                Log::error(json_encode($request));
+                Log::alert(json_encode($request));
             }
 
 

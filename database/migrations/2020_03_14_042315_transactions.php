@@ -17,6 +17,7 @@ class Transactions extends Migration
             $table->id();
             $table->string("account");
             $table->string("transaction_code");
+            $table->string("type");
             $table->integer('shortcode_id')->unsigned();
             $table->string('msisdn');
             $table->integer('has_notified')->default(0);
