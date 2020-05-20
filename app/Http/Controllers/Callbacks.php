@@ -569,14 +569,29 @@ class Callbacks
                                 ';
     }
     public function postdata($url,$data)
-    {
-        $client = new \GuzzleHttp\Client();
-        foreach($url as $link)
-            {
-                $request = $client->post($link,  ['form_params'=>$data]);
-                Log::alert(json_encode($request));
-            }
+        {
+            $client = new \GuzzleHttp\Client();
+            foreach($url as $link)
+                {
+                    $request = $client->post($link,  ['form_params'=>$data]);
+                    Log::alert(json_encode($request));
+                }
 
 
-    }
+        }
+    public function curl_function($url, $param)
+        {
+            foreach($url as $link)
+                {
+                    $ch = curl_init($link);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    Log::alert(json_encode($result));
+                }
+        }
 }
