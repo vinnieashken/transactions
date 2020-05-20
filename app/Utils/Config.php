@@ -36,8 +36,8 @@ class Config
                 $this->reversal_timeoutURL	    =	url("ReversalCallback");
                 $this->balance_timeoutUrl		=	url("AccountBalCallback");
                 $this->balance_resultUrl		=	url("AccountBalCallback");
-                $this->c2b_confirmationUrl	    = 	url("C2BConfirmation");
-                $this->c2b_validationUrl		= 	url("C2BValidation");
+                $this->c2b_confirmationUrl	    = 	url("app/c2bconfirmation");
+                $this->c2b_validationUrl		= 	url("app/c2bvalidation");
                 $this->transtat_resultURL		=	url("TransStatCallback");
                 $this->transtat_timeoutURL	    =	url("TransStatCallback");
                 $this->b2b_timeoutURL			=	url("B2BCallback");
