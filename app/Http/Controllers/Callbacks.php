@@ -537,9 +537,8 @@ class Callbacks
             $trans->type                =   $data["type"];
             $trans->source              =   "MPESA";
             $trans->save();
-            Log::notice($data);
             $this->emailnotify($detail);
-            $this->postdata($url,$param);
+            $this->curl_function($url,$param);
         }
         catch(Exception $e)
         {
