@@ -177,7 +177,6 @@ class Payments extends Controller
                                               ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                               ->orWhere('msisdn', 'LIKE',"%{$search}%")
                                               ->orWhere('amount', 'LIKE',"%{$search}%")
-                                              ->orWhere('shortcode_id','LIKE',"%{$shortcode}%")
                                               ->offset($start)
                                               ->limit($limit)
                                               ->orderBy($order,$dir)
@@ -188,7 +187,6 @@ class Payments extends Controller
                                              ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                              ->orWhere('msisdn', 'LIKE',"%{$search}%")
                                              ->orWhere('amount', 'LIKE',"%{$search}%")
-                                             ->orWhere('shortcode_id','LIKE',"%{$shortcode}%")
                                              ->count();
                     }
 
