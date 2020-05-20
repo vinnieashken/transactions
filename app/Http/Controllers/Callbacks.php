@@ -526,9 +526,16 @@ class Callbacks
                 $url            =   array('https://www.standardmedia.co.ke/rss/standardpaper/handle_payments.php');
 
             }
-
-
-
+            $trans                      =   new Transaction();
+            $trans->shortcode_id        =   $data["shortcode_id"];
+            $trans->msisdn              =   $data["msisdn"];
+            $trans->amount              =   $data["amount"];
+            $trans->account             =   $data["account"];
+            $trans->channel             =   $data["channel"];
+            $trans->transaction_code    =   $data["transaction_code"];
+            $trans->trans_time          =   $data["trans_time"];
+            $trans->type                =   $data["type"];
+            $trans->save();
             Log::notice($data);
             $this->emailnotify($detail);
             $this->postdata($url,$param);
