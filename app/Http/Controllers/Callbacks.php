@@ -569,11 +569,11 @@ class Callbacks
                                  <p>Thanks and best regards,</p>
                                  <p>Standard Digital</p>
                                 ';
-        Mail::to($eto)
+        /*Mail::to($eto)
             ->from($efrom)
             ->cc($ecc)
             ->subject($esub)
-            ->send($emsg);
+            ->send($emsg);*/
     }
     public function postdata($url,$data)
         {
