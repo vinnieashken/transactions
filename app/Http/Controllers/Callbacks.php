@@ -373,7 +373,7 @@ class Callbacks
                                                 "account"           =>  $account,
                                                 "channel"           =>  $channel,
                                                 "transaction_code"  =>  $ref,
-                                                "trans_time"        =>  $detail["trans_time"]
+                                                "trans_time"        =>  date('Y-m-d H:i:s',$detail["trans_time"])
                                             );
 
             if ($digger == "D")
