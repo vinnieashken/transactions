@@ -173,7 +173,7 @@ class Payments extends Controller
                         $shortcode  =   (Shortcode::where('shortcode','LIKE',"%{$search}%")->first())?Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id:FALSE;
 
                         $posts  =   Transaction::where('transaction_code','LIKE',"%{$search}%")
-                                              ->orWhere('mpesa_code', 'LIKE',"%{$search}%")
+                                              ->orWhere('account', 'LIKE',"%{$search}%")
                                               ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                               ->orWhere('msisdn', 'LIKE',"%{$search}%")
                                               ->orWhere('amount', 'LIKE',"%{$search}%")
@@ -184,7 +184,7 @@ class Payments extends Controller
                                               ->get();
 
                         $totalFiltered = Transaction::where('transaction_code','LIKE',"%{$search}%")
-                                             ->orWhere('mpesa_code', 'LIKE',"%{$search}%")
+                                             ->orWhere('account', 'LIKE',"%{$search}%")
                                              ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                              ->orWhere('msisdn', 'LIKE',"%{$search}%")
                                              ->orWhere('amount', 'LIKE',"%{$search}%")
