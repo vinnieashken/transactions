@@ -441,7 +441,7 @@ class Callbacks
                     'mpesa_code'   => $ref
                 );
                 $data['type']   =   'nairobian';
-                $url            =   'https://www.thenairobian.ke/payments/mpesa/callback';
+                $url            =   array('https://www.thenairobian.ke/payments/mpesa/callback');
             }
             if ($msape == 'VS')
             {
@@ -510,7 +510,7 @@ class Callbacks
                         'origin'        => 'PDS'
                     );
                     $data['type']   = 'PDS';
-                    $url = 'https://www.standardmedia.co.ke/pds_payment';
+                    $url = array('https://www.standardmedia.co.ke/pds_payment');
                 }
             }
             if ($ticket_hub != 'TK' && $epaper != 'EPK'  && $epaper != 'PDS' && $digger != 'D' && $digger != 'M' && $msape != 'BD' && $msape != 'VS' && $ticket_hub != 'TN' && $epaper != 'ELE')
