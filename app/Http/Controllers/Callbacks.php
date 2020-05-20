@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shortcode;
+use App\Models\Transaction;
 use http\Client;
 use Illuminate\Http\Request;
 use App\Models\Service;
@@ -525,6 +526,11 @@ class Callbacks
                 $url            =   array('https://www.standardmedia.co.ke/rss/standardpaper/handle_payments.php');
 
             }
+            $trans = (object)$data;
+            $transaction    =   new Transaction();
+            $transaction->append($trans);
+
+            Log::notice($transaction);
             $this->emailnotify($detail);
             $this->postdata($url,$param);
         }
