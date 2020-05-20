@@ -563,8 +563,9 @@ class Callbacks
         foreach($url as $link)
             {
                 $request = $client->post($link,  ['form_params'=>$data]);
+                Log::error($request);
             }
-        $response = $request->send();
-        echo $response;
+
+
     }
 }
