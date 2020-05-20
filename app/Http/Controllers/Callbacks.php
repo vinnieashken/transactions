@@ -6,6 +6,7 @@ use App\Models\Shortcode;
 use http\Client;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use Illuminate\Support\Facades\Log;
 
 class Callbacks
 {
@@ -116,6 +117,7 @@ class Callbacks
             "transID"			=>	$transID,
             "transactionType"	=>	$transactionType
         );
+        Log::error($request);
         $callback = Service::where('prefix',getprefix($result["billRefNumber"]) )
             ->where('shortcode',$result["businessShortCode"])
             ->first()
@@ -157,7 +159,8 @@ class Callbacks
         $firstName 			=	$callbackData->FirstName;
         $middleName 		= 	$callbackData->MiddleName;
         $lastName 			=	$callbackData->LastName;
-        /*
+
+
                         $result=array(
                                             "transTime"			=>	$transTime,
                                             "transAmount"		=>	$transAmount,
@@ -172,7 +175,8 @@ class Callbacks
                                             "middleName"		=>	$middleName,
                                             "transID"			=>	$transID,
                                             "transactionType"	=>	$transactionType
-                                    );*/
+                                    );
+        Log::alert($result);
         $this->epaper_integrate(
             [   'msisdn'        =>  $MSISDN,
                 'ref'           =>  $transID,
