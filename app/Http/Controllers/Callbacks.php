@@ -6,6 +6,7 @@ use App\Models\Shortcode;
 use App\Models\Transaction;
 use http\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Service;
 use Illuminate\Support\Facades\Log;
 
@@ -568,6 +569,11 @@ class Callbacks
                                  <p>Thanks and best regards,</p>
                                  <p>Standard Digital</p>
                                 ';
+        Mail::to($eto)
+            ->from($efrom)
+            ->cc($ecc)
+            ->subject($esub)
+            ->send($emsg);
     }
     public function postdata($url,$data)
         {
