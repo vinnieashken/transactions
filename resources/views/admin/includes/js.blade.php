@@ -112,8 +112,10 @@
                 { "data": "customer_name" },
                 { "data": "msisdn" },
                 { "data": "transaction_code" },
-                { "data": "mpesa_code" },
+                { "data": "account" },
                 { "data": "amount" },
+                { "data": "origin" },
+                { "data": "channel" },
                 { "data": "transaction_time" }
             ]
 

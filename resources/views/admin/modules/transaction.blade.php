@@ -12,8 +12,10 @@
                        <th>Customer Name</th>
                        <th>Telephone No</th>
                        <th>TransId</th>
-                       <th>Mpesa Code</th>
+                       <th>Account</th>
                        <th>Amount</th>
+                       <th>Origin</th>
+                       <th>Channel</th>
                        <th>Time</th>
                    </tr>
                </thead>
@@ -23,8 +25,10 @@
                        <th>Customer Name</th>
                        <th>Telephone No</th>
                        <th>TransId</th>
-                       <th>Mpesa Code</th>
+                       <th>Account</th>
                        <th>Amount</th>
+                       <th>Origin</th>
+                       <th>Channel</th>
                        <th>Time</th>
                    </tr>
                </tfoot>

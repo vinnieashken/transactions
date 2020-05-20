@@ -199,10 +199,12 @@ class Payments extends Controller
                             {
                                 $nestedData['shortcode']        =   Shortcode::where('id',$post->shortcode_id)->first()->shortcode;
                                 $nestedData['transaction_code'] =   $post->transaction_code;
-                                $nestedData['mpesa_code']       =   $post->mpesa_code;
+                                $nestedData['account']          =   $post->account;
                                 $nestedData['amount']           =   $post->amount;
                                 $nestedData['msisdn']           =   $post->msisdn;
                                 $nestedData['customer_name']    =   $post->customer_name;
+                                $nestedData['origin']           =   $post->type;
+                                $nestedData['channel']          =   $post->channel;
                                 $nestedData['transaction_time'] =   date('j M Y h:i a',strtotime($post->transaction_time));
                                 $data[] = $nestedData;
 
