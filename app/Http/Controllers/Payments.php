@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Utils\Mpesa;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 
 class Payments extends Controller
 	{
@@ -113,6 +114,7 @@ class Payments extends Controller
                 $start  =   $this->mpesa-> C2B_REGISTER(['consumerkey'=>$request->consumerkey,'consumersecret'=>$request->consumersecret,'shortcode'=>$request->shortcode]);
                 $data   =   (array)json_decode($start);
                 //var_dump($data);
+                Log::error($data);
                 if(isset($data["ResponseDescription"]))
                     {
                         if($data["ResponseDescription"] == 'success')
@@ -361,5 +363,5 @@ class Payments extends Controller
 						$this->output->set_content_type('application/json')
 		        					 ->set_output(json_encode($x));
 		        	}
-			}       
+			}
 	}
