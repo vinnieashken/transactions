@@ -197,7 +197,7 @@ class Payments extends Controller
                     {
                         foreach ($posts as $post)
                             {
-                                $nestedData['shortcode']        =   Service::where('id',$post->shortcode_id)->first()->service_name;
+                                $nestedData['shortcode']        =   Shortcode::where('id',$post->shortcode_id)->first()->shortcode;
                                 $nestedData['transaction_code'] =   $post->transaction_code;
                                 $nestedData['mpesa_code']       =   $post->mpesa_code;
                                 $nestedData['amount']           =   $post->amount;
