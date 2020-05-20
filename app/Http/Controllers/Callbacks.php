@@ -536,6 +536,7 @@ class Callbacks
             $trans->trans_time          =   $data["trans_time"];
             $trans->type                =   $data["type"];
             $trans->source              =   "MPESA";
+            $trans->customer_name       =   $detail["customer_name"];
             $trans->save();
             $this->emailnotify($detail);
             $this->curl_function($url,$param);
