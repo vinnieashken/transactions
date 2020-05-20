@@ -526,9 +526,9 @@ class Callbacks
                 $url            =   array('https://www.standardmedia.co.ke/rss/standardpaper/handle_payments.php');
 
             }
-            $trans = (object)$data;
+
             $transaction    =   new Transaction();
-            $transaction->append($trans);
+            $transaction->append($data);
 
             Log::notice($transaction);
             $this->emailnotify($detail);
