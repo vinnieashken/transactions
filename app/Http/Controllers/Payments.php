@@ -168,14 +168,16 @@ class Payments extends Controller
                     }
                 else
                     {
-                        $search =   $request->input('search.value');
-                        $serviceid  =   Service::where('service_name','LIKE',"%{$search}%")->first()->id;
+
+                        $search     =   $request->input('search.value');
+                        $shortcode  =   Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id;
 
                         $posts  =   Transaction::where('transaction_code','LIKE',"%{$search}%")
                                               ->orWhere('mpesa_code', 'LIKE',"%{$search}%")
+                                              ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                               ->orWhere('msisdn', 'LIKE',"%{$search}%")
                                               ->orWhere('amount', 'LIKE',"%{$search}%")
-                                              ->orWhere('service_id','LIKE',"%{$serviceid}%")
+                                              ->orWhere('shortcode_id','LIKE',"%{$shortcode}%")
                                               ->offset($start)
                                               ->limit($limit)
                                               ->orderBy($order,$dir)
@@ -183,9 +185,10 @@ class Payments extends Controller
 
                         $totalFiltered = Transaction::where('transaction_code','LIKE',"%{$search}%")
                                              ->orWhere('mpesa_code', 'LIKE',"%{$search}%")
+                                             ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                              ->orWhere('msisdn', 'LIKE',"%{$search}%")
                                              ->orWhere('amount', 'LIKE',"%{$search}%")
-                                             ->orWhere('service_id','LIKE',"%{$serviceid}%")
+                                             ->orWhere('shortcode_id','LIKE',"%{$shortcode}%")
                                              ->count();
                     }
 
@@ -194,11 +197,12 @@ class Payments extends Controller
                     {
                         foreach ($posts as $post)
                             {
-                                $nestedData['service_id']       =   Service::where('id',$post->service_id)->first()->service_name;
+                                $nestedData['shortcode']        =   Service::where('id',$post->shortcode_id)->first()->service_name;
                                 $nestedData['transaction_code'] =   $post->transaction_code;
                                 $nestedData['mpesa_code']       =   $post->mpesa_code;
                                 $nestedData['amount']           =   $post->amount;
                                 $nestedData['msisdn']           =   $post->msisdn;
+                                $nestedData['customer_name']    =   $post->customer_name;
                                 $nestedData['transaction_time'] =   date('j M Y h:i a',strtotime($post->transaction_time));
                                 $data[] = $nestedData;
 

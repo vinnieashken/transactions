@@ -108,11 +108,12 @@
                 "data":{ _token: "{{csrf_token()}}"}
             },
             "columns": [
-                { "data": "service_id" },
+                { "data": "shortcode" },
+                { "data": "customer_name" },
+                { "data": "msisdn" },
                 { "data": "transaction_code" },
                 { "data": "mpesa_code" },
                 { "data": "amount" },
-                { "data": "msisdn" },
                 { "data": "transaction_time" }
             ]
 
