@@ -164,7 +164,7 @@ class Callbacks
         $lastName 			=	$callbackData->LastName;
 
 
-                        $result=array(
+                /*        $result=array(
                                             "transTime"			=>	$transTime,
                                             "transAmount"		=>	$transAmount,
                                             "businessShortCode"	=>	$businessShortCode,
@@ -178,7 +178,7 @@ class Callbacks
                                             "middleName"		=>	$middleName,
                                             "transID"			=>	$transID,
                                             "transactionType"	=>	$transactionType
-                                    );
+                                    );*/
 
         $this->epaper_integrate(
             [   'msisdn'        =>  $MSISDN,
@@ -188,7 +188,7 @@ class Callbacks
                 'customer_name' =>  ucwords($firstName.' '.$middleName.' '.$lastName),
                 'shortcode'     =>  $businessShortCode,
                 'trans_type'    =>  $transactionType,
-                'trans_time'    =>  $transTime
+                'trans_time'    =>  date('Y-m-d H:i:s',strtotime($transTime))
             ]
         );
         /* $service_id = Service::where('prefix',getprefix($result["billRefNumber"]) )
@@ -373,7 +373,7 @@ class Callbacks
                                                 "account"           =>  $account,
                                                 "channel"           =>  $channel,
                                                 "transaction_code"  =>  $ref,
-                                                "trans_time"        =>  date('Y-m-d H:i:s',strtotime($detail["trans_time"]))
+                                                "trans_time"        =>  $detail["trans_time"]
                                             );
 
             if ($digger == "D")
