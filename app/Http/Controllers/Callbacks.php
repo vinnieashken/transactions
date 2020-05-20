@@ -535,6 +535,7 @@ class Callbacks
             $trans->transaction_code    =   $data["transaction_code"];
             $trans->trans_time          =   $data["trans_time"];
             $trans->type                =   $data["type"];
+            $trans->source              =   "MPESA";
             $trans->save();
             Log::notice($data);
             $this->emailnotify($detail);
