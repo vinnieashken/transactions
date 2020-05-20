@@ -83,11 +83,12 @@ class Callbacks
 
 
     }
-    public function C2BRequestValidation(Request $request)
+    public function C2BRequestValidation()
     {
 
         $callbackJSONData 	=	file_get_contents('php://input');
         $callbackData 		=	json_decode($callbackJSONData);
+        Log::error($callbackJSONData);
         $transactionType 	=	$callbackData->TransactionType;
         $transID 			=	$callbackData->TransID;
         $transTime 			=	$callbackData->TransTime;
