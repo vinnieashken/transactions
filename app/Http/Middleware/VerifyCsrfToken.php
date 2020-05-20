@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        'https://trans.standardmedia.co.ke/app/c2bconfirmation',
+        'https://trans.standardmedia.co.ke/app/c2bvalidation'
     ];
 }
