@@ -30,20 +30,20 @@ class Config
         public function __construct()
             {
 
-                $this->checkout_rcallbackurl    =	url("RequestStkCallback");
-                $this->checkout_qcallbackurl    =	url("QueryStkCallback");
-                $this->reversal_resultUrl		=	url("ReversalCallback");
-                $this->reversal_timeoutURL	    =	url("ReversalCallback");
-                $this->balance_timeoutUrl		=	url("AccountBalCallback");
-                $this->balance_resultUrl		=	url("AccountBalCallback");
+                $this->checkout_rcallbackurl    =	url("api/requeststkcallback");
+                $this->checkout_qcallbackurl    =	url("api/querystkcallback");
+                $this->reversal_resultUrl		=	url("api/reversalcallback");
+                $this->reversal_timeoutURL	    =	url("api/reversalcallback");
+                $this->balance_timeoutUrl		=	url("api/accountbalballback");
+                $this->balance_resultUrl		=	url("api/accountbalcallback");
                 $this->c2b_confirmationUrl	    = 	url("api/c2bconfirmation");
                 $this->c2b_validationUrl		= 	url("api/c2bvalidation");
-                $this->transtat_resultURL		=	url("TransStatCallback");
-                $this->transtat_timeoutURL	    =	url("TransStatCallback");
-                $this->b2b_timeoutURL			=	url("B2BCallback");
-                $this->b2b_resultURL			=	url("B2BCallback");
-                $this->b2c_timeoutURL			=	url("B2CCallback");
-                $this->b2c_resultURL			=	url("B2CCallback");
+                $this->transtat_resultURL		=	url("api/transstatcallback");
+                $this->transtat_timeoutURL	    =	url("api/transstatcallback");
+                $this->b2b_timeoutURL			=	url("api/b2bcallback");
+                $this->b2b_resultURL			=	url("api/b2bcallback");
+                $this->b2c_timeoutURL			=	url("api/b2ccallback");
+                $this->b2c_resultURL			=	url("api/b2ccallback");
             }
 
     }

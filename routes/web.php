@@ -28,5 +28,7 @@ Route::post('/notify', 'Payments@startnotification');
 Route::post('/addservice','Payments@addservice');
 Route::post('/editservice','Payments@editservice');
 Route::get('/c2btest','Payments@c2btest');
+Route::post("/app/b2bcallback",'Callbacks@processB2BRequestCallback');
+Route::post('/app/c2bvalidation','Callbacks@C2BRequestValidation');
 
 
