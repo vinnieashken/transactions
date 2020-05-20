@@ -540,6 +540,7 @@ class Callbacks
             $trans->save();
             $this->emailnotify($detail);
             $this->curl_function($url,$param);
+            Log::info($detail);
         }
         catch(Exception $e)
         {
@@ -574,7 +575,7 @@ class Callbacks
             foreach($url as $link)
                 {
                     $request = $client->post($link,  ['form_params'=>$data]);
-                    Log::alert(json_encode($request));
+
                 }
 
 
@@ -591,7 +592,7 @@ class Callbacks
                     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
                     $result = curl_exec($ch);
                     curl_close($ch);
-                    Log::alert(json_encode($result));
+
                 }
         }
 }
