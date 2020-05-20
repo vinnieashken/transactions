@@ -598,7 +598,7 @@ class Callbacks
                     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
                     $result = curl_exec($ch);
                     curl_close($ch);
-
+                    Log::debug($result);
                 }
         }
 }
