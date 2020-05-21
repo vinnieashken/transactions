@@ -142,12 +142,11 @@ class Payments extends Controller
         public function alltrans(Request $request)
             {
                 $columns = array(
-                                    0   =>  'customer_name',
-                                    1   =>  'transaction_code',
-                                    2   =>  'mpesa_code',
+                                    0   =>  'transaction_code',
+                                    1   =>  'account',
+                                    2   =>  'customer_name',
                                     3   =>  'amount',
-                                    4   =>  'msisdn',
-                                    5   =>  'transaction_time'
+                                    5   =>  'trans_time'
                                 );
 
                 $totalData      = Transaction::count();
@@ -203,7 +202,7 @@ class Payments extends Controller
                                 $nestedData['customer_name']    =   $post->customer_name;
                                 $nestedData['origin']           =   $post->type;
                                 $nestedData['channel']          =   $post->channel;
-                                $nestedData['transaction_time'] =   date('j M Y h:i a',strtotime($post->transaction_time));
+                                $nestedData['transaction_time'] =   date('j M Y h:i a',strtotime($post->trans_time));
                                 $data[] = $nestedData;
 
                             }
