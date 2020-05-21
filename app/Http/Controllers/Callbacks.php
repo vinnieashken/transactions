@@ -467,7 +467,7 @@ class Callbacks
                     'mpesa_code'    =>  $ref,
                     'origin'        => 'E-learning'
                 );
-//                $param          =   json_encode($param);
+                $param          =   json_encode($param);
                 $data['type']   =   'E-learning';
                 $url            =   array('https://tutorsoma.standardmedia.co.ke/api/payments/mpesa/callback');
             }
