@@ -33,7 +33,7 @@
                    </tr>
                </tfoot>
            </table>
-           {{ getprefix('Ep0ki008') }}
+
        </div>
    </div>
 @endsection

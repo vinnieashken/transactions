@@ -453,7 +453,7 @@ class Callbacks
                     'mpesa_code'    =>  $ref,
                     'origin'        => 'vas'
                 );
-                $param          =   json_encode($param);
+//                $param          =   json_encode($param);
                 $data['type']   =   'vas';
                 $url            =   array('https://vas.standardmedia.co.ke/api/paymentRequest/confirm','https://ktnkenya.com/msape/public/api/mobile/transact');
             }
@@ -467,7 +467,7 @@ class Callbacks
                     'mpesa_code'    =>  $ref,
                     'origin'        => 'E-learning'
                 );
-                $param          =   json_encode($param);
+//                $param          =   json_encode($param);
                 $data['type']   =   'E-learning';
                 $url            =   array('https://tutorsoma.standardmedia.co.ke/api/payments/mpesa/callback');
             }
