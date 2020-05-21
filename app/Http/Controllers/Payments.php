@@ -143,10 +143,8 @@ class Payments extends Controller
             {
                 $columns = array(
                                     0   =>  'transaction_code',
-                                    1   =>  'account',
-                                    2   =>  'customer_name',
-                                    3   =>  'amount',
-                                    5   =>  'trans_time'
+                                    1   =>  'trans_time'
+
                                 );
 
                 $totalData      = Transaction::count();
