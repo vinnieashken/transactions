@@ -142,8 +142,7 @@ class Payments extends Controller
         public function alltrans(Request $request)
             {
                 $columns = array(
-                                    0   =>  'transaction_code',
-                                    1   =>  'trans_time'
+                                    0   =>  'trans_time'
 
                                 );
 
