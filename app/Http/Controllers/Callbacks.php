@@ -387,7 +387,7 @@ class Callbacks
                     "orderid"       =>  $account,
                     "status"        =>  "success"
                 );
-                $data['type']   =   'digger';
+                $data['type']   =   'Digger';
                 $url            =   array("https://digger.co.ke/payment/mpesa/done");
             }
             if ($digger == "M")
@@ -414,9 +414,22 @@ class Callbacks
                     'mpesa_code'     =>     $ref,
                     'origin'         =>     'events'
                 );
-                $data['type']   =   'epaper';
+                $data['type']   =   'Events';
                 $url            =   array('https://www.tickethub.co.ke/transaction');
             }
+            if ($ticket_hub == 'KZ')
+                {
+                    $param          =   array(
+                        'sender_phone'   =>     $moneyfromnumber,
+                        'amount'         =>     $amount,
+                        'transaction'    =>     $account,
+                        'type'           =>     $channel,
+                        'mpesa_code'     =>     $ref,
+                        'origin'         =>     'New Digger'
+                    );
+                    $data['type']   =   'New Digger';
+                    $url            =   array('https://digger.standardmedia.co.ke/api/subscription/pay/callback');
+                }
             if ($ticket_hub == 'ET')
             {
                 $param          =   array(
@@ -428,7 +441,6 @@ class Callbacks
                     'origin'         =>     'events'
                 );
                 $data['type']   =   'epaper';
-                $param          =   json_encode($param);
                 $url            =   array('https://vas.standardmedia.co.ke/api/paymentRequest/confirm','https://ktnkenya.com/msape/public/api/mobile/transact');
             }
             if ($ticket_hub == 'TN')
