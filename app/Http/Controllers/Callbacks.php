@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Phone_number;
 use App\Models\Shortcode;
 use App\Models\Transaction;
 use http\Client;
@@ -554,6 +555,7 @@ class Callbacks
             $this->emailnotify($detail);
             $this->curl_function($url,$param);
             Log::info($detail);
+            $this->add_numbers($detail["customer_name"],$data["msisdn"]);
         }
         catch(Exception $e)
         {
@@ -586,6 +588,7 @@ class Callbacks
             ->cc($ecc)
             ->subject($esub)
             ->send($emsg);*/
+        return TRUE;
     }
     public function postdata($url,$data)
         {
@@ -612,5 +615,11 @@ class Callbacks
                     curl_close($ch);
                     Log::debug($result);
                 }
+            return TRUE;
+        }
+    public function add_numbers($name,$phone)
+        {
+            Phone_number::firstOrCreate(['phone_number'=>$phone],["customer_name"=>$name]);
+            return TRUE;
         }
 }
