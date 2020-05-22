@@ -583,11 +583,21 @@ class Callbacks
                                  <p>Thanks and best regards,</p>
                                  <p>Standard Digital</p>
                                 ';
-        /*Mail::to($eto)
-            ->from($efrom)
-            ->cc($ecc)
-            ->subject($esub)
-            ->send($emsg);*/
+        $postRequest = array(
+                                "email"     =>  $eto.', '.$ecc,
+                                "subject"   =>  $esub,
+                                "message"   =>  $emsg
+                            );
+        $ch = curl_init('https://mail.standarddigitalworld.co.ke/api/transactionalMail');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postRequest);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "appkey"=>"QW1UTjBXZzAxSVBrSTJLbmlQVlk0SDBNOWJJZ095S2VqTDM2
+R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556"
+        ));
+        $apiResponse = curl_exec($ch);
+        curl_close($ch);
+        Log::info($apiResponse);
         return TRUE;
     }
     public function postdata($url,$data)
