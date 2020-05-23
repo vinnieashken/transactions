@@ -594,8 +594,8 @@ class Callbacks
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postRequest);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER,
-            array("appkey:QW1UTjBXZzAxSVBrSTJLbmlQVlk0SDBNOWJJZ095S2VqTDM2
-R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556")
+            array('appkey:QW1UTjBXZzAxSVBrSTJLbmlQVlk0SDBNOWJJZ095S2VqTDM2
+R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556')
         );
         $apiResponse = curl_exec($ch);
         curl_close($ch);
