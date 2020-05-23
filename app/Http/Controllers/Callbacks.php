@@ -526,7 +526,7 @@ class Callbacks
                     $url = array('https://www.standardmedia.co.ke/pds_payment');
                 }
             }
-            if ($ticket_hub != 'TK' && $epaper != 'EPK'  && $epaper != 'PDS' && $digger != 'D' && $digger != 'M' && $msape != 'BD' && $msape != 'VS' && $ticket_hub != 'TN' && $epaper != 'ELE')
+            if ($ticket_hub != 'TK' && $ticket_hub != 'KZ' && $epaper != 'EPK'  && $epaper != 'PDS' && $digger != 'D' && $digger != 'M' && $msape != 'BD' && $msape != 'VS' && $ticket_hub != 'TN' && $epaper != 'ELE')
             {
                 $account        =   'eaa' . $account;
                 $param          =   array(
