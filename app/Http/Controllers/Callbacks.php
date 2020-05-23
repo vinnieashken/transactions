@@ -552,10 +552,12 @@ class Callbacks
             $trans->source              =   "MPESA";
             $trans->customer_name       =   $detail["customer_name"];
             $trans->save();
-            $this->emailnotify($detail);
+
             $this->curl_function($url,$param);
             Log::info($detail);
+
             $this->add_numbers($detail["customer_name"],$data["msisdn"]);
+            $this->emailnotify($detail);
         }
         catch(Exception $e)
         {
@@ -597,7 +599,7 @@ R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556"
         ));
         $apiResponse = curl_exec($ch);
         curl_close($ch);
-        Log::info($apiResponse);
+        Log::info("Email : ".$apiResponse);
         return TRUE;
     }
     public function postdata($url,$data)
@@ -623,7 +625,7 @@ R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556"
                     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
                     $result = curl_exec($ch);
                     curl_close($ch);
-                    Log::debug($result);
+                    Log::debug("Curl Push : ".$result);
                 }
             return TRUE;
         }
