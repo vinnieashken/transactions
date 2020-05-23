@@ -617,6 +617,7 @@ R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556')
         }
     public function curl_function($url, $param)
         {
+            Log::debug("Curl data : ".json_encode($param));
             foreach($url as $link)
                 {
                     $ch = curl_init($link);
