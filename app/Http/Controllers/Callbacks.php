@@ -557,7 +557,7 @@ class Callbacks
             Log::info($detail);
 
             $this->add_numbers($detail["customer_name"],$data["msisdn"]);
-            $this->emailnotify($detail);
+//            $this->emailnotify($detail);
         }
         catch(Exception $e)
         {
@@ -593,6 +593,8 @@ class Callbacks
         $ch = curl_init('https://mail.standarddigitalworld.co.ke/api/transactionalMail');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postRequest);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_HTTPHEADER,
             array('appkey:QW1UTjBXZzAxSVBrSTJLbmlQVlk0SDBNOWJJZ095S2VqTDM2
 R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556')
