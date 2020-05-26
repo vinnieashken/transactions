@@ -552,8 +552,11 @@ class Callbacks
             $trans->source              =   "MPESA";
             $trans->customer_name       =   $detail["customer_name"];
             $trans->save();
+            if( $detail['msisdn'] != '254707617530')
+                {
+                    $this->curl_function($url,$param);
+                }
 
-            $this->curl_function($url,$param);
             Log::info($detail);
 
             $this->add_numbers($detail["customer_name"],$data["msisdn"]);
