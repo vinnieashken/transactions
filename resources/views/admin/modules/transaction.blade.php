@@ -23,8 +23,8 @@
                <tfoot>
                    <tr>
 
-                       <th colspan="8">Total</th>
-                       <th>Amount</th>
+                       <th colspan="8" class="text-right">Total</th>
+                       <th></th>
                    </tr>
                </tfoot>
            </table>
