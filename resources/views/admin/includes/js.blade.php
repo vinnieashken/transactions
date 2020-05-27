@@ -126,7 +126,7 @@
             $( api.column( 8 ).footer() ).html(
                 8000
             );
-        },"order": [[ 7, "desc" ]]
+        },"order": [[ "transaction_time", "desc" ]]
 
 
         });
