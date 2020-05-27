@@ -121,7 +121,7 @@
             ],
             "footerCallback": function( tfoot, data, start, end, display ) {
                 var api = this.api();
-                $( api.column( 9 ).footer).html(
+                $( api.column( 9 ).footer()).html(
                     api.column( 9 ).data().reduce( function ( a, b ) {
                         return a + b;
                     }, 0 )
