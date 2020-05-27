@@ -113,10 +113,11 @@
                 { "data": "msisdn" },
                 { "data": "transaction_code" },
                 { "data": "account" },
-                { "data": "amount" },
+
                 { "data": "origin" },
                 { "data": "channel" },
-                { "data": "transaction_time" }
+                { "data": "transaction_time" },
+                { "data": "amount" }
             ],
             "footerCallback": function ( row, data, start, end, display ) {
                 var api = this.api(), data;
@@ -139,21 +140,21 @@
 
                 // Total over this page
                 pageTotal = api
-                    .column( 4, { page: 'current'} )
+                    .column( 9, { page: 'current'} )
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0 );
 
                 // Update footer
-                $( api.column( 4 ).footer() ).html(
+                $( api.column( 9 ).footer() ).html(
                     '$'+pageTotal +' ( $'+ total +' total)'
                 );
             }
 
         });
     });
-   
+
 </script>
 <script>
     $('.summernote').summernote({
