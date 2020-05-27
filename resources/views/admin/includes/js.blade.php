@@ -117,12 +117,7 @@
                 { "data": "origin" },
                 { "data": "channel" },
                 { "data": "transaction_time" }
-            ]
-
-        });
-    });
-    $(document).ready(function() {
-        $('#transactions').DataTable( {
+            ],
             "footerCallback": function ( row, data, start, end, display ) {
                 var api = this.api(), data;
 
@@ -155,8 +150,10 @@
                     '$'+pageTotal +' ( $'+ total +' total)'
                 );
             }
-        } );
-    } );
+
+        });
+    });
+   
 </script>
 <script>
     $('.summernote').summernote({
