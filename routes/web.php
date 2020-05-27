@@ -18,7 +18,7 @@ Route::get('/dashboard','Payments@index');
 Route::get('/shortcode','Payments@shortcode');
 Route::get('/services','Payments@services');
 Route::post('/signin','Login@signin');
-Route::get('/transaction','Payments@transaction');
+Route::get('/transaction/{type}','Payments@transaction');
 Route::post('/alltrans','Payments@alltrans');
 Auth::routes();
 Route::get('/home', 'Payments@index')->name('home');

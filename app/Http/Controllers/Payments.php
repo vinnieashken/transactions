@@ -214,11 +214,12 @@ class Payments extends Controller
 
                 echo json_encode($json_data);
             }
-        public function transaction()
+        public function transaction($type)
             {
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
                 $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
                 $this->data['services'] =   Service::paginate(10);
+                $this->data['type']     =   $type;
                 return view('admin.modules.transaction',$this->data);
             }
         public function addservice(Request $request)

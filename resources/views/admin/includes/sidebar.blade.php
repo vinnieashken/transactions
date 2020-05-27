@@ -33,7 +33,7 @@
                 <ul id="transactions" class="sidebar-dropdown list-unstyled collapse ">
                     @foreach(\App\Models\Service::all() as $value)
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ url('transaction/'.$value->service_name) }}">{{ $value->service_name }}</a>
+                        <a class="sidebar-link" href="{{ url('transaction/'.strtolower($value->service_name)) }}">{{ $value->service_name }}</a>
                     </li>
                     @endforeach
                 </ul>
