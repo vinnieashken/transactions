@@ -117,24 +117,14 @@
                 { "data": "channel" },
                 { "data": "transaction_time" },
                 { "data": "amount" }
-            ],
+            ] ,
             "footerCallback": function ( row, data, start, end, display ) {
                 var api = this.api(), data;
-
-                // Remove the formatting to get integer data for summation
-                var intVal = function ( i ) {
-                    return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')*1 :
-                        typeof i === 'number' ?
-                            i : 0;
-                };
-
-
-
+                var total = total;
                 // Update footer
                 $( api.column( 9 ).footer() ).html(
-                    '$'+Total +' ( Ksh'+ total)'
-                );
+                    'Total  Ksh'+ total;
+            );
             }
 
         });
