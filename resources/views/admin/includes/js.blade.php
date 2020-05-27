@@ -105,7 +105,7 @@
                 "url": "{{ url('alltrans') }}",
                 "dataType": "json",
                 "type": "POST",
-                "data":{ _token: "{{csrf_token()}}","type":"{{ $type ?? '' }}"}
+                "data":{ _token: "{{csrf_token()}}"}
             },
             "columns": [
                 { "data": "shortcode" },
@@ -117,16 +117,8 @@
                 { "data": "channel" },
                 { "data": "transaction_time" },
                 { "data": "amount" }
-            ],
-            "footerCallback": function ( row, data, start, end, display) {
-            var api = this.api(), data;
-            console.log(JSON.parse( localStorage.getItem('dataTablesData') ));
-            // Remove the formatting to get integer data for summation
-            // Update footer
-            $( api.column( 8 ).footer() ).html(
-                8000
-            );
-        },"order": [[ 0, "desc" ]]
+            ]
+       ,"order": [[ 0, "desc" ]]
 
 
         });
