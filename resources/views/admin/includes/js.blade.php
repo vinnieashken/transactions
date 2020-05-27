@@ -119,7 +119,7 @@
                 { "data": "transaction_time" },
                 { "data": "amount" }
             ],
-            "footerCallback": function ( row, data, start, end, display ) {
+            "footerCallback": function ( row, data, start, end, display,total ) {
                 var api = this.api(), data;
 
                 // Remove the formatting to get integer data for summation
