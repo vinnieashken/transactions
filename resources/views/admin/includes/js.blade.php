@@ -120,7 +120,7 @@
             ],
             "footerCallback": function ( row, data, start, end, display ,total) {
             var api = this.api(), data;
-            console.log(total);
+            console.log(this.total);
             // Remove the formatting to get integer data for summation
             // Update footer
             $( api.column( 8 ).footer() ).html(
