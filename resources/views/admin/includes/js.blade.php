@@ -121,7 +121,7 @@
             ],
             "footerCallback": function( tfoot, data, start, end, display ) {
                 var api = this.api();
-                console.log(api);
+                console.log( api.column( 9 ));
             }
 
         });
