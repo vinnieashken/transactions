@@ -147,7 +147,7 @@ class Payments extends Controller
                                 );
 
                 $totalData      = Transaction::count();
-
+                var_dump($request->input('type'));
                 $totalFiltered  = $totalData;
 
                 $limit  =   $request->input('length');
