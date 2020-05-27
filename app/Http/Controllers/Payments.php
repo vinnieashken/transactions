@@ -146,7 +146,7 @@ class Payments extends Controller
 
                                 );
 
-                $totalData      = Transaction::where("source",$request->input('type'))
+                $totalData      = Transaction::where("type",$request->input('type'))
                                              ->count();
 
                 $totalFiltered  = $totalData;
@@ -158,7 +158,7 @@ class Payments extends Controller
 
                 if(empty($request->input('search.value')))
                     {
-                        $posts = Transaction::where("source",$request->input('type'))
+                        $posts = Transaction::where("type",$request->input('type'))
                                      ->offset($start)
                                      ->limit($limit)
                                      ->orderBy($order,$dir)
@@ -170,7 +170,7 @@ class Payments extends Controller
                         $search     =   $request->input('search.value');
                         $shortcode  =   (Shortcode::where('shortcode','LIKE',"%{$search}%")->first())?Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id:FALSE;
 
-                        $posts  =   Transaction::where("source",$request->input('type'))
+                        $posts  =   Transaction::where("type",$request->input('type'))
                                               ->where('transaction_code','LIKE',"%{$search}%")
                                               ->orWhere('account', 'LIKE',"%{$search}%")
                                               ->orWhere('customer_name', 'LIKE',"%{$search}%")
@@ -181,7 +181,7 @@ class Payments extends Controller
                                               ->orderBy($order,$dir)
                                               ->get();
 
-                        $totalFiltered = Transaction::where("source",$request->input('type'))
+                        $totalFiltered = Transaction::where("type",$request->input('type'))
                                              ->where('transaction_code','LIKE',"%{$search}%")
                                              ->orWhere('account', 'LIKE',"%{$search}%")
                                              ->orWhere('customer_name', 'LIKE',"%{$search}%")
