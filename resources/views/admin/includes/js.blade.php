@@ -118,7 +118,7 @@
                 { "data": "transaction_time" },
                 { "data": "amount" }
             ]
-       ,"order": [[ 0, "desc" ]]
+       ,"order": [[ 7, "desc" ]]
 
 
         });
