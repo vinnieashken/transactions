@@ -105,7 +105,7 @@
                 "url": "{{ url('alltrans') }}",
                 "dataType": "json",
                 "type": "POST",
-                "data":{ _token: "{{csrf_token()}}"}
+                "data":{ _token: "{{csrf_token()}}","type":"{{ $type ?? '' }}"}
             },
             "columns": [
                 { "data": "shortcode" },
