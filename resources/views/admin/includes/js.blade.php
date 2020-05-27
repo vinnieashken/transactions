@@ -118,8 +118,6 @@
                 { "data": "transaction_time" },
                 { "data": "amount" }
             ],
-            ,
-
             "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
 
