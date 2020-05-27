@@ -119,14 +119,12 @@
                 { "data": "transaction_time" },
                 { "data": "amount" }
             ],
-            "footerCallback": function ( row, data, start, end, display) {
+            "footerCallback": function( tfoot, data, start, end, display ) {
                 var api = this.api();
-
-
-
-                // Update footer
                 $( api.column( 9 ).footer() ).html(
-                   data.total
+                    api.column( 9 ).data().reduce( function ( a, b ) {
+                        return a + b;
+                    }, 0 )
                 );
             }
 
