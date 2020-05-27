@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmail;
 use App\Models\Phone_number;
 use App\Models\Shortcode;
 use App\Models\Transaction;
@@ -574,37 +575,46 @@ class Callbacks
         //For all payments done, please sent a notification with proper caption to onlineaccounts@standardmedia.co.ke
         $efrom      =   "online@standardmedia.co.ke";
         $eto        =   "onlineaccounts@standardmedia.co.ke";
-        $ecc        =   " jkidambi@standardmedia.co.ke, cronoh@standardmedia.co.ke, dokuthe@standardmedia.co.ke, nmangala@standardmedia.co.ke, bsikuku@standardmedia.co.ke, hmadadi@standardmedia.co.ke,kanami@standardmedia.co.ke,dkiptugen@standardmedia.co.ke";
+        $ecc        =   ["jkidambi@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke", "nmangala@standardmedia.co.ke",
+                        "bsikuku@standardmedia.co.ke", "hmadadi@standardmedia.co.ke","kanami@standardmedia.co.ke",
+                        "dkiptugen@standardmedia.co.ke"];
         $esub       =   "MPESA INSTANT PAYMENT NOTIFICATION - PAYBILL NUMBER 505604";
-        $emsg       =   '<p> This is an email alert to inform you that we have received MPESA Payment</p>' .
-            '<p> Transaction ID: ' . $dt['ref'] . '</p>
-                                 <p> Sender Number: ' . $dt['msisdn'] . '</p>
-                                 <p> Sender Name: ' . $dt['customer_name'] . '</p>
-                                 <p> Amount: ' . $dt['amount'] . '</p>
-                                 <p> MPESA account: ' .$dt['account'] . '</p>
-                                 <p> MPESA Code: ' . $dt['ref'] . '</p>
-                                 <p> Transaction Time: ' . $dt['trans_time'] . '</p>
-                                 <p><br><br></p>
-                                 <p>Thanks and best regards,</p>
-                                 <p>Standard Digital</p>
-                                ';
-        $postRequest = array(
-                                "email"     =>  $eto.', '.$ecc,
-                                "subject"   =>  $esub,
-                                "message"   =>  $emsg
-                            );
-        $ch = curl_init('https://mail.standarddigitalworld.co.ke/api/transactionalMail');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postRequest);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
-            array('appkey:QW1UTjBXZzAxSVBrSTJLbmlQVlk0SDBNOWJJZ095S2VqTDM2
-R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556')
-        );
-        $apiResponse = curl_exec($ch);
-        curl_close($ch);
-        Log::info("Email : ".$apiResponse);
+//        $emsg       =   '<p> This is an email alert to inform you that we have received MPESA Payment</p>' .
+//            '<p> Transaction ID: ' . $dt['ref'] . '</p>
+//                                 <p> Sender Number: ' . $dt['msisdn'] . '</p>
+//                                 <p> Sender Name: ' . $dt['customer_name'] . '</p>
+//                                 <p> Amount: ' . $dt['amount'] . '</p>
+//                                 <p> MPESA account: ' .$dt['account'] . '</p>
+//                                 <p> MPESA Code: ' . $dt['ref'] . '</p>
+//                                 <p> Transaction Time: ' . $dt['trans_time'] . '</p>
+//                                 <p><br><br></p>
+//                                 <p>Thanks and best regards,</p>
+//                                 <p>Standard Digital</p>
+//                                ';
+//        $postRequest = array(
+//                                "email"     =>  $eto.', '.$ecc,
+//                                "subject"   =>  $esub,
+//                                "message"   =>  $emsg
+//                            );
+//        $ch = curl_init('https://mail.standarddigitalworld.co.ke/api/transactionalMail');
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, $postRequest);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+//        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+//        curl_setopt($ch, CURLOPT_HTTPHEADER,
+//            array('appkey:QW1UTjBXZzAxSVBrSTJLbmlQVlk0SDBNOWJJZ095S2VqTDM2
+//R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556')
+//        );
+//        $apiResponse = curl_exec($ch);
+//        curl_close($ch);
+//        Log::info("Email : ".$apiResponse);
+        $data = json_decode(json_encode($dt));
+        $data->email = $eto;
+        $data->subject = $esub;
+        $data->cc = $ecc;
+
+        SendEmail::dispatch($data);
+
         return TRUE;
     }
     public function postdata($url,$data)
@@ -639,5 +649,22 @@ R2RHbG1JdjZXSVFjMG1hWUxvWEhmY2hB5eafd4feeb556')
         {
             Phone_number::firstOrCreate(['phone_number'=>$phone],["customer_name"=>$name]);
             return TRUE;
+        }
+
+        public function sendEmail()
+        {
+            $data = new \stdClass();
+            $data->subject = 'MPESA INSTANT PAYMENT NOTIFICATION - PAYBILL NUMBER 505604';
+            $data->email = "vinnieashke@gmail.com";
+            $data->cc        =   ["vmutune@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke"];
+            $data->ref = 'MTS35XZC' ;
+            $data->msisdn = '254720566887' ;
+            $data->customer_name = 'Dave mahuru';
+            $data->amount = 10;
+            $data->account = 'TN456' ;
+            $data->trans_time = '2-3-3';
+
+            Log::info($data->email);
+            SendEmail::dispatch($data);
         }
 }

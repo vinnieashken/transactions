@@ -31,5 +31,6 @@ Route::get('/c2btest','Payments@c2btest');
 
 Route::post('/app/c2bvalidation','Callbacks@C2BRequestValidation');
 Route::post('/app/c2bconfirmation','Callbacks@processC2BRequestConfirmation');
+Route::get('/email/send','Callbacks@sendEmail');
 
 
