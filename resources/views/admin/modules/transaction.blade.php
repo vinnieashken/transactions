@@ -19,7 +19,7 @@
                        <th>Time</th>
                    </tr>
                </thead>
-              
+
            </table>
 
        </div>
