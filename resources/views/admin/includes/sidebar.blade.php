@@ -25,7 +25,6 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link font-weight-bold" href="{{ url('transaction') }}">
                 <a href="#transactions" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
                     <i class="align-middle" data-feather="briefcase"></i>
                     <span class="align-middle">Transactions</span>
