@@ -22,15 +22,8 @@
                </thead>
                <tfoot>
                    <tr>
-                       <th>Shortcode</th>
-                       <th>Customer Name</th>
-                       <th>Telephone No</th>
-                       <th>TransId</th>
-                       <th>Account</th>
 
-                       <th>Origin</th>
-                       <th>Channel</th>
-                       <th>Time</th>
+                       <th colspan="8">Total</th>
                        <th>Amount</th>
                    </tr>
                </tfoot>
