@@ -151,7 +151,7 @@
             $( api.column( 9 ).footer() ).html(
                 '$'+pageTotal +' ( $'+ total +' total)'
             );
-        },
+        }
 
 
         });
