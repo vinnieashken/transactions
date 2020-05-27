@@ -218,7 +218,7 @@ class Payments extends Controller
                                 $nestedData['origin']           =   $post->type;
                                 $nestedData['channel']          =   $post->channel;
                                 $nestedData['transaction_time'] =   date('j M Y h:i a',strtotime($post->trans_time));
-                                $nestedData['total']            =   $sum;
+                                //$nestedData['total']            =   $sum;
                                 $data[] = $nestedData;
 
                             }
@@ -228,7 +228,8 @@ class Payments extends Controller
                                         "draw"            => intval($request->input('draw')),
                                         "recordsTotal"    => intval($totalData),
                                         "recordsFiltered" => intval($totalFiltered),
-                                        "data"            => $data
+                                        "data"            => $data,
+                                        "total"           =>  $sum
                                     );
 
                 echo json_encode($json_data);
