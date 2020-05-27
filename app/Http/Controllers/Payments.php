@@ -142,12 +142,19 @@ class Payments extends Controller
         public function alltrans(Request $request)
             {
                 $columns = array(
-                                    0   =>  'trans_time'
+                                    0   =>  'shortcode_id',
+                                    1   =>  'transaction_code',
+                                    2   =>  'account',
+                                    3   =>  'msisdn',
+                                    4   =>  'customer_name',
+                                    5   =>  'type',
+                                    6   =>  'channel',
+                                    7   =>  'trans_time',
+                                    8   =>  'amount'
 
                                 );
 
-                $totalData      = Transaction::where("type",$request->input('type'))
-                                             ->count();
+                $totalData      = Transaction::count();
 
                 $totalFiltered  = $totalData;
 
@@ -158,13 +165,11 @@ class Payments extends Controller
 
                 if(empty($request->input('search.value')))
                     {
-                        $posts = Transaction::where("type",$request->input('type'))
-                                     ->offset($start)
+                        $posts = Transaction::offset($start)
                                      ->limit($limit)
                                      ->orderBy($order,$dir)
                                      ->get();
-                        $sum   =  Transaction::where("type",$request->input('type'))
-                                                ->offset($start)
+                        $sum   =  Transaction::offset($start)
                                                 ->limit($limit)
                                                 ->orderBy($order,$dir)
                                                 ->sum('amount');
@@ -175,8 +180,7 @@ class Payments extends Controller
                         $search     =   $request->input('search.value');
                         $shortcode  =   (Shortcode::where('shortcode','LIKE',"%{$search}%")->first())?Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id:FALSE;
 
-                        $posts  =   Transaction::where("type",$request->input('type'))
-                                              ->where('transaction_code','LIKE',"%{$search}%")
+                        $posts  =   Transaction::where('transaction_code','LIKE',"%{$search}%")
                                               ->orWhere('account', 'LIKE',"%{$search}%")
                                               ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                               ->orWhere('msisdn', 'LIKE',"%{$search}%")
@@ -185,8 +189,7 @@ class Payments extends Controller
                                               ->limit($limit)
                                               ->orderBy($order,$dir)
                                               ->get();
-                        $sum    =   Transaction::where("type",$request->input('type'))
-                                                ->where('transaction_code','LIKE',"%{$search}%")
+                        $sum    =   Transaction::where('transaction_code','LIKE',"%{$search}%")
                                                 ->orWhere('account', 'LIKE',"%{$search}%")
                                                 ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                                 ->orWhere('msisdn', 'LIKE',"%{$search}%")
@@ -195,8 +198,7 @@ class Payments extends Controller
                                                 ->limit($limit)
                                                 ->orderBy($order,$dir)
                                                 ->sum('amount');
-                        $totalFiltered = Transaction::where("type",$request->input('type'))
-                                             ->where('transaction_code','LIKE',"%{$search}%")
+                        $totalFiltered = Transaction::where('transaction_code','LIKE',"%{$search}%")
                                              ->orWhere('account', 'LIKE',"%{$search}%")
                                              ->orWhere('customer_name', 'LIKE',"%{$search}%")
                                              ->orWhere('msisdn', 'LIKE',"%{$search}%")
