@@ -36,10 +36,10 @@
                     <span class="align-middle">Financial Services</span>
                 </a>
                 <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse ">
-                    <li class="sidebar-item"><a class="sidebar-link" href="">Bulk Dispersment</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="">Refund</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="">Account Balance</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="">B2B</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url("bulk_dispersement") }}">Bulk Dispersment</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url("refund") }}">Refund</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url("account_balance") }}">Account Balance</a></li>
+                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url("b2b") }}">B2B</a></li>
                 </ul>
             </li>
             <li class="sidebar-header">
@@ -47,12 +47,12 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link font-weight-bold" href="">
+                <a class="sidebar-link font-weight-bold" href="{{ url("users") }}">
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">User Management</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link font-weight-bold" href="">
+                <a class="sidebar-link font-weight-bold" href="{{ url("profile") }}">
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Profile</span>
                 </a>
             </li>
@@ -61,7 +61,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link font-weight-bold" href="">
+                <a class="sidebar-link font-weight-bold" href="{{ url("documentation") }}">
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Documentation</span>
                 </a>
             </li>
