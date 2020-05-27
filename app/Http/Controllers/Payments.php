@@ -163,6 +163,11 @@ class Payments extends Controller
                                      ->limit($limit)
                                      ->orderBy($order,$dir)
                                      ->get();
+                        $sum   =  Transaction::where("type",$request->input('type'))
+                                                ->offset($start)
+                                                ->limit($limit)
+                                                ->orderBy($order,$dir)
+                                                ->sum('amount');
                     }
                 else
                     {
@@ -180,7 +185,16 @@ class Payments extends Controller
                                               ->limit($limit)
                                               ->orderBy($order,$dir)
                                               ->get();
-
+                        $sum    =   Transaction::where("type",$request->input('type'))
+                                                ->where('transaction_code','LIKE',"%{$search}%")
+                                                ->orWhere('account', 'LIKE',"%{$search}%")
+                                                ->orWhere('customer_name', 'LIKE',"%{$search}%")
+                                                ->orWhere('msisdn', 'LIKE',"%{$search}%")
+                                                ->orWhere('amount', 'LIKE',"%{$search}%")
+                                                ->offset($start)
+                                                ->limit($limit)
+                                                ->orderBy($order,$dir)
+                                                ->sum('amount');
                         $totalFiltered = Transaction::where("type",$request->input('type'))
                                              ->where('transaction_code','LIKE',"%{$search}%")
                                              ->orWhere('account', 'LIKE',"%{$search}%")
@@ -213,7 +227,8 @@ class Payments extends Controller
                                         "draw"            => intval($request->input('draw')),
                                         "recordsTotal"    => intval($totalData),
                                         "recordsFiltered" => intval($totalFiltered),
-                                        "data"            => $data
+                                        "data"            => $data,
+                                        "total"           => $sum
                                     );
 
                 echo json_encode($json_data);

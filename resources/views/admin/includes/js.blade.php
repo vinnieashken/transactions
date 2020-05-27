@@ -113,7 +113,6 @@
                 { "data": "msisdn" },
                 { "data": "transaction_code" },
                 { "data": "account" },
-
                 { "data": "origin" },
                 { "data": "channel" },
                 { "data": "transaction_time" },
@@ -130,25 +129,11 @@
                             i : 0;
                 };
 
-                // Total over all pages
-                total = api
-                    .column( 9 )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
 
-                // Total over this page
-                pageTotal = api
-                    .column( 9, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
 
                 // Update footer
                 $( api.column( 9 ).footer() ).html(
-                    '$'+pageTotal +' ( $'+ total +' total)'
+                    '$'+Total +' ( Ksh'+ total)'
                 );
             }
 
