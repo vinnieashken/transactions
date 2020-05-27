@@ -120,7 +120,7 @@
             ],
             "footerCallback": function ( row, data, start, end, display) {
             var api = this.api(), data;
-            console.log(data);
+            console.log(JSON.parse( localStorage.getItem('total') ));
             // Remove the formatting to get integer data for summation
             // Update footer
             $( api.column( 8 ).footer() ).html(
