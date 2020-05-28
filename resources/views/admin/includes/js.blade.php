@@ -160,7 +160,7 @@
 
 
     }
-        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
             console.log(picker.startDate.format('YYYY-MM-DD'));
             console.log(picker.endDate.format('YYYY-MM-DD'));
             data   =    '{"start":"'+picker.format('YYYY-MM-DD')+'","end":"'+picker.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
