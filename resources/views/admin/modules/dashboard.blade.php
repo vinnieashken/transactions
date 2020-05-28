@@ -4,7 +4,12 @@
 @section('content')
     <div class="row">
         <div class="d-flex justify-content-end">
-
+            <div class="ml-auto">
+                <div id="reportrange" class="overflow-hidden form-control">
+                    <i class="far fa-calendar"></i>&nbsp;
+                    <span></span> <i class="fas fa-caret-down"></i>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
