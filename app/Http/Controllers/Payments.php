@@ -26,9 +26,10 @@ class Payments extends Controller
 
 		public function index(Request $request)
 			{
+			    dd($request);
 			    foreach(Service::all() as $value)
                     {
-                        if(empty($request->input('start_date')))
+                        if(empty($request->input('start')))
                             {
                                 $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',date('Y-m-d')." 00:00:00")->sum("amount");
                             }
