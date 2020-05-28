@@ -4,10 +4,7 @@
 @section('content')
     <div class="d-flex justify-content-end w-100">
             <div class="ml-auto">
-                <div id="reportrange" class="overflow-hidden form-control">
-                    <i class="far fa-calendar"></i>&nbsp;
-                    <span></span> <i class="fas fa-caret-down"></i>
-                </div>
+                <input class="form-control" type="text" name="reportrange" value="01/01/2018 - 01/15/2018" />
             </div>
     </div>
 
