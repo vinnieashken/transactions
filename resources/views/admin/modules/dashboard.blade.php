@@ -2,17 +2,16 @@
 @section('title', 'Dashboard')
 @section('subtitle','Dashboard')
 @section('content')
-    <div class="row">
-        <div class="d-flex justify-content-end w-100">
+    <div class="d-flex justify-content-end w-100">
             <div class="ml-auto">
                 <div id="reportrange" class="overflow-hidden form-control">
                     <i class="far fa-calendar"></i>&nbsp;
                     <span></span> <i class="fas fa-caret-down"></i>
                 </div>
             </div>
-        </div>
     </div>
-    <div class="row">
+
+    <div class="row mt-2">
         @foreach(\App\Models\Service::all() as $val)
             <div class="col-12 col-md-3 col-xl-3 d-flex">
                 <div class="card flex-fill">
