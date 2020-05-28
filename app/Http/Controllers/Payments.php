@@ -34,7 +34,7 @@ class Payments extends Controller
                             }
                         else
                             {
-                                
+
                             }
                     }
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
