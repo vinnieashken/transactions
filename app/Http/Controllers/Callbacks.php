@@ -561,7 +561,7 @@ class Callbacks
             Log::info($detail);
 
             $this->add_numbers($detail["customer_name"],$data["msisdn"]);
-//            $this->emailnotify($detail);
+            $this->emailnotify($detail);
         }
         catch(Exception $e)
         {
