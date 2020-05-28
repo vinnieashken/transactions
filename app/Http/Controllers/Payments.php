@@ -29,13 +29,13 @@ class Payments extends Controller
 
 			    foreach(Service::all() as $value)
                     {
-                        if(empty($request->input('start')))
+                        if(empty($request->start))
                             {
                                 $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',date('Y-m-d')." 00:00:00")->sum("amount");
                             }
                         else
                             {
-                                $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',$request->input('start')." 00:00:00")->where("trans_time", '<=',$request->input('end')." 00:00:00")->sum("amount");
+                                $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',$request->start." 00:00:00")->where("trans_time", '<=',$request->end." 00:00:00")->sum("amount");
                             }
                     }
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
