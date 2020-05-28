@@ -37,7 +37,7 @@ class Payments extends Controller
                             {*/
                                 $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',$request->start." 00:00:00")->where("trans_time", '<=',$request->end." 00:00:00")->sum("amount");
                             /*}*/
-                        var_dump($request->input('start'));
+                        var_dump($request->all());
                     }
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
                 $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
