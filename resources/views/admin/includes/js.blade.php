@@ -164,11 +164,7 @@
 
             data   =    '{"start":"'+picker.startDate.format('YYYY-MM-DD')+'","end":"'+picker.endDate.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
             console.log(data);
-            $.post('{{ url('dashboard') }}',JSON.parse(data),function(fre){
-                var newDoc = document.open("text/html", "replace");
-                newDoc.write(fre);
-                newDoc.close();
-            });
+            $.post('{{ url('dashboard') }}',JSON.parse(data));
         });
     $('#reportrange').daterangepicker({
         startDate: start,
