@@ -27,7 +27,7 @@ class Payments extends Controller
 		public function index(Request $request)
 			{
                 $dat    =   $request->all();
-                if(isset($dat['start'])) {
+                if(!isset($dat['start'])) {
                     foreach (Service::all() as $value) {
                         /* if($request->start)
                              {
@@ -40,11 +40,12 @@ class Payments extends Controller
 
                     }
 
-                    $this->data['user'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'users')->first();
-                    $this->data['userimg'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
-                    return view('admin.modules.dashboard', $this->data);
+
                 }
-                echo "Hurray";
+                $this->data['user'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'users')->first();
+                $this->data['userimg'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
+                return view('admin.modules.dashboard', $this->data);
+
 			}
 
         public function shortcode()
