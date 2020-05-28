@@ -157,7 +157,7 @@
 
     function cb(start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        console.log(start);
+        console.log(start.format('YYYY-MM-DD'));
     }
     $('#reportrange').daterangepicker({
         startDate: start,
