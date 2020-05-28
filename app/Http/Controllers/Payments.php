@@ -27,21 +27,20 @@ class Payments extends Controller
 		public function index(Request $request)
 			{
                 $dat    =   $request->all();
-                if(!isset($dat['start'])) {
-                    foreach (Service::all() as $value) {
-                        /* if($request->start)
-                             {
-                                 $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',date('Y-m-d')." 00:00:00")->sum("amount");
-                             }
-                         else
-                             {*/
-                        $this->data["report"][$value->service_name] = Transaction::where("type", $value->service_name)->where("trans_time", '>=', $request->start . " 00:00:00")->where("trans_time", '<=', $request->end . " 00:00:00")->sum("amount");
-                        /*}*/
-
+                if(!isset($dat['start']))
+                    {
+                        foreach (Service::all() as $value)
+                            {
+                                $this->data["report"][$value->service_name] = Transaction::where("type", $value->service_name)->where("trans_time", '>=',date('Y-m-d'). " 00:00:00")->sum("amount");
+                            }
                     }
-
-
-                }
+                else
+                    {
+                        foreach (Service::all() as $value)
+                            {
+                                $this->data["report"][$value->service_name] = Transaction::where("type", $value->service_name)->where("trans_time", '>=', $data['start'] . " 00:00:00")->where("trans_time", '<=', $data['end'] . " 00:00:00")->sum("amount");
+                            }
+                    }
                 $this->data['user'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'users')->first();
                 $this->data['userimg'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
                 return view('admin.modules.dashboard', $this->data);
