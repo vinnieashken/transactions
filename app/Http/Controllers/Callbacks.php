@@ -577,7 +577,7 @@ class Callbacks
         $eto        =   "onlineaccounts@standardmedia.co.ke";
         $ecc        =   ["jkidambi@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke", "nmangala@standardmedia.co.ke",
                         "bsikuku@standardmedia.co.ke", "hmadadi@standardmedia.co.ke","kanami@standardmedia.co.ke",
-                        "dkiptugen@standardmedia.co.ke"];
+                        "dkiptugen@standardmedia.co.ke","vinnieashken@gmail.com"];
         $esub       =   "MPESA INSTANT PAYMENT NOTIFICATION - PAYBILL NUMBER 505604";
 //        $emsg       =   '<p> This is an email alert to inform you that we have received MPESA Payment</p>' .
 //            '<p> Transaction ID: ' . $dt['ref'] . '</p>
