@@ -26,7 +26,7 @@ class Payments extends Controller
 
 		public function index(Request $request)
 			{
-			    dd($request);
+			   
 			    foreach(Service::all() as $value)
                     {
                         if(empty($request->input('start')))
