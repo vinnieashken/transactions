@@ -3,7 +3,7 @@
 @section('subtitle','Dashboard')
 @section('content')
     <div class="row">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end w-100">
             <div class="ml-auto">
                 <div id="reportrange" class="overflow-hidden form-control">
                     <i class="far fa-calendar"></i>&nbsp;
