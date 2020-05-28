@@ -4,7 +4,7 @@
         <div class="row text-muted">
             <div class="col-6 text-left">
                 <p class="mb-0">
-                    &copy; <a href="index-2.html" class="text-muted">Mpesa</a>
+                    &copy; <a href="index-2.html" class="text-muted">Mpesa Admin Portal</a>
                 </p>
             </div>
             <div class="col-6 text-right">
