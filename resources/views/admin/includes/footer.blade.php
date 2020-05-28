@@ -4,7 +4,7 @@
         <div class="row text-muted">
             <div class="col-6 text-left">
                 <p class="mb-0">
-                    &copy; <a href="{{ base_url() }}" class="text-muted">Mpesa Admin Portal</a>
+                    &copy; <a href="" class="text-muted">Mpesa Admin Portal</a>
                 </p>
             </div>
             <div class="col-6 text-right">
