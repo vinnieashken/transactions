@@ -161,9 +161,8 @@
 
     }
         $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-            console.log(picker.startDate.format('YYYY-MM-DD'));
-            console.log(picker.endDate.format('YYYY-MM-DD'));
-            data   =    '{"start":"'+picker.format('YYYY-MM-DD')+'","end":"'+picker.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
+
+            data   =    '{"start":"'+picker.startDate.format('YYYY-MM-DD')+'","end":"'+picker.endDate.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
             console.log(data);
             $.post('{{ url('dashboard') }}',JSON.parse(data),function(fre){
                 var newDoc = document.open("text/html", "replace");
