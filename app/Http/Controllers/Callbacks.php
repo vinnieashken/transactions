@@ -654,9 +654,11 @@ class Callbacks
         public function sendEmail()
         {
             $data = new \stdClass();
-            $data->subject = 'MPESA INSTANT PAYMENT NOTIFICATION - PAYBILL NUMBER 505604';
+            $data->subject = 'TEST MPESA INSTANT PAYMENT NOTIFICATION - PAYBILL NUMBER 505604';
             $data->email = "vinnieashken@gmail.com";
-            $data->cc        =   ["vmutune@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke"];
+            $data->cc   =   ["jkidambi@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke", "nmangala@standardmedia.co.ke",
+                "bsikuku@standardmedia.co.ke", "hmadadi@standardmedia.co.ke","kanami@standardmedia.co.ke",
+                "dkiptugen@standardmedia.co.ke"];
             $data->ref = 'MTS35XZC' ;
             $data->msisdn = '254720566887' ;
             $data->customer_name = 'Dave mahuru';

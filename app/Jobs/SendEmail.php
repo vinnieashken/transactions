@@ -34,10 +34,10 @@ class SendEmail implements ShouldQueue
      */
     public function handle()
     {
-        //
-//        Mail::to($this->details->email)
-//            ->cc($this->details->cc)
-//            ->send(new AccountsNotification($this->details));
+
+        Mail::to($this->details->email)
+            ->cc($this->details->cc)
+            ->send(new AccountsNotification($this->details));
 
     }
 }
