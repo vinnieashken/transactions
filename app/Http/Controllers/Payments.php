@@ -29,7 +29,7 @@ class Payments extends Controller
 
 			    foreach(Service::all() as $value)
                     {
-                        if(empty($request->start))
+                        if($request->start)
                             {
                                 $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',date('Y-m-d')." 00:00:00")->sum("amount");
                             }
