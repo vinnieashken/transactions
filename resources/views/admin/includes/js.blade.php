@@ -155,9 +155,7 @@
         $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
 
             data   =    '{"start":"'+picker.startDate.format('YYYY-MM-DD')+'","end":"'+picker.endDate.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
-            $.post('{{ url('dashboard') }}',JSON.parse(data),function(te){
-                $('html').replaceWith(te);
-            });
+            $.post('{{ url('dashboard') }}',JSON.parse(data));
         });
         var start = moment().subtract(1, 'days');
         var end = moment();
