@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         @foreach(\App\Models\Service::all() as $val)
-            <div class="col-12 col-md-3 col-xl-2 d-flex">
+            <div class="col-12 col-md-3 col-xl-3 d-flex">
                 <div class="card flex-fill">
                     <div class="card-body py-4">
                         <div class="row">
