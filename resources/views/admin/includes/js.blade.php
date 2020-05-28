@@ -157,15 +157,20 @@
 
     function cb(start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        data   =    '{"start":"'+start.format('YYYY-MM-DD')+'","end":"'+end.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
-        console.log(data);
-        $.post('{{ url('dashboard') }}',JSON.parse(data),function(fre){
-            var newDoc = document.open("text/html", "replace");
-            newDoc.write(fre);
-            newDoc.close();
-        });
+
 
     }
+        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+            console.log(picker.startDate.format('YYYY-MM-DD'));
+            console.log(picker.endDate.format('YYYY-MM-DD'));
+            data   =    '{"start":"'+picker.format('YYYY-MM-DD')+'","end":"'+picker.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
+            console.log(data);
+            $.post('{{ url('dashboard') }}',JSON.parse(data),function(fre){
+                var newDoc = document.open("text/html", "replace");
+                newDoc.write(fre);
+                newDoc.close();
+            });
+        });
     $('#reportrange').daterangepicker({
         startDate: start,
         endDate: end,
