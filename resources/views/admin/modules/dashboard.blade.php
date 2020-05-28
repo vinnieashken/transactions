@@ -14,7 +14,7 @@
                     <div class="card-body py-4">
                         <div class="row">
                             <div class="col">
-                                <h3 class="mb-2">Ksh </h3>
+                                <h3 class="mb-2">Ksh {{ $report[$val->service_name] }}</h3>
                                 <div class="mb-0">{{ $val->service_name }}</div>
                             </div>
 

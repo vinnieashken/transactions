@@ -26,6 +26,10 @@ class Payments extends Controller
 
 		public function index()
 			{
+			    foreach(Service::all() as $value)
+                    {
+                        $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->sum("amount");
+                    }
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
                 $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
                 return view('admin.modules.dashboard',$this->data);
