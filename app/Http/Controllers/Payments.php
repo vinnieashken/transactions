@@ -26,23 +26,25 @@ class Payments extends Controller
 
 		public function index(Request $request)
 			{
-
-			    foreach(Service::all() as $value)
-                    {
-                       /* if($request->start)
-                            {
-                                $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',date('Y-m-d')." 00:00:00")->sum("amount");
-                            }
-                        else
-                            {*/
-                                $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',$request->start." 00:00:00")->where("trans_time", '<=',$request->end." 00:00:00")->sum("amount");
-                            /*}*/
+                $dat    =   $request->all();
+                if($dat['start'] != NULL) {
+                    foreach (Service::all() as $value) {
+                        /* if($request->start)
+                             {
+                                 $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',date('Y-m-d')." 00:00:00")->sum("amount");
+                             }
+                         else
+                             {*/
+                        $this->data["report"][$value->service_name] = Transaction::where("type", $value->service_name)->where("trans_time", '>=', $request->start . " 00:00:00")->where("trans_time", '<=', $request->end . " 00:00:00")->sum("amount");
+                        /*}*/
 
                     }
-			    $this->data["test"]     =   $request->all();
-                $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
-                $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
-                return view('admin.modules.dashboard',$this->data);
+
+                    $this->data['user'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'users')->first();
+                    $this->data['userimg'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
+                    return view('admin.modules.dashboard', $this->data);
+                }
+                echo "Hurray";
 			}
 
         public function shortcode()
