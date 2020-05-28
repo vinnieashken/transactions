@@ -28,7 +28,7 @@ class Payments extends Controller
 			{
 			    foreach(Service::all() as $value)
                     {
-                        $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->sum("amount");
+                        $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time>",date('Y-m-d')." 00:00:00")->sum("amount");
                     }
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
                 $this->data['userimg']  =   Role::where('user_id',\Auth::User()->id)->where('access_name','thumbnail')->first();
