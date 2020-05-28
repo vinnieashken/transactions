@@ -152,23 +152,16 @@
     });
     datatablesButtonsDesc.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
     document.addEventListener("DOMContentLoaded", function(event) {
-    var start = moment().subtract(29, 'days');
-    var end = moment();
-
-    function cb(start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-
-
-    }
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+        $('#reportrange').daterangepicker({
+            opens: 'left'
+        });
+     $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
 
             data   =    '{"start":"'+picker.startDate.format('YYYY-MM-DD')+'","end":"'+picker.endDate.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
             console.log(data);
             $.post('{{ url('dashboard') }}',JSON.parse(data));
         });
-  
-    $('#reportrange').daterangepicker({
-        opens: 'left'
-    });
+
+
     });
 </script>
