@@ -655,7 +655,7 @@ class Callbacks
         {
             $data = new \stdClass();
             $data->subject = 'MPESA INSTANT PAYMENT NOTIFICATION - PAYBILL NUMBER 505604';
-            $data->email = "vinnieashke@gmail.com";
+            $data->email = "vinnieashken@gmail.com";
             $data->cc        =   ["vmutune@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke"];
             $data->ref = 'MTS35XZC' ;
             $data->msisdn = '254720566887' ;
