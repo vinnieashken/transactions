@@ -157,7 +157,8 @@
 
     function cb(start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        $.post('{{ url('cms/dashboard') }}',JSON.parse('{"start":"'+start.format('YYYY-MM-DD')+'","end":"'+end.format('YYYY-MM-DD')+'", _token: "{{csrf_token()}}"}') );
+        data   =    '{"start":"'+start.format('YYYY-MM-DD')+'","end":"'+end.format('YYYY-MM-DD')+'", _token: "{{csrf_token()}}"}';
+        $.post('{{ url('cms/dashboard') }}',JSON.parse(data);
 
     }
     $('#reportrange').daterangepicker({
