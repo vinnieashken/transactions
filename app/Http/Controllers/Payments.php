@@ -26,7 +26,7 @@ class Payments extends Controller
 
 		public function index(Request $request)
 			{
-			   
+
 			    foreach(Service::all() as $value)
                     {
                         if(empty($request->input('start')))
@@ -35,7 +35,7 @@ class Payments extends Controller
                             }
                         else
                             {
-
+                                $this->data["report"][$value->service_name] = Transaction::where("type",$value->service_name)->where("trans_time", '>=',$request->input('start')." 00:00:00")->where("trans_time", '<=',$request->input('end')." 00:00:00")->sum("amount");
                             }
                     }
                 $this->data['user']     =   Role::where('user_id',\Auth::User()->id)->where('access_name','users')->first();
