@@ -152,8 +152,12 @@
     });
     datatablesButtonsDesc.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
     document.addEventListener("DOMContentLoaded", function(event) {
+        var start = moment().subtract(1, 'days');
+        var end = moment();
         $('#reportrange').daterangepicker({
-            opens: 'left'
+            opens: 'left',
+            startDate: start,
+            endDate: end
         });
      $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
 
