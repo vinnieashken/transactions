@@ -12,6 +12,7 @@
     </div>
 
     <div class="row mt-2">
+        {{ $request->start }}
         @foreach(\App\Models\Service::all() as $val)
             <div class="col-12 col-md-3 col-xl-3 d-flex">
                 <div class="card flex-fill">
