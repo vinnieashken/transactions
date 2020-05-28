@@ -16,7 +16,7 @@
                             <div class="col">
                                 <h3 class="mb-2">{{ $val->service_name }}</h3>
                                 <div class="mb-0">
-                                    Ksh {{ number_format($report[$val->service_name]) }}
+                                    Ksh {{ number_format($report[$val->service_name],2) }}
                                 </div>
                             </div>
 
