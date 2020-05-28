@@ -34,7 +34,7 @@ class Payments extends Controller
                 $this->data['userimg'] = Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
                 return view('admin.modules.dashboard', $this->data);
 			}
-        punlic function index2(Request $request)
+        public function index2(Request $request)
             {
                 $dat    =   $request->all();
                 foreach (Service::all() as $value)
