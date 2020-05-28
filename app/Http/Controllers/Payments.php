@@ -27,7 +27,7 @@ class Payments extends Controller
 		public function index(Request $request)
 			{
                 $dat    =   $request->all();
-                if($dat['start'] != NULL) {
+                if(isset($dat['start'])) {
                     foreach (Service::all() as $value) {
                         /* if($request->start)
                              {
