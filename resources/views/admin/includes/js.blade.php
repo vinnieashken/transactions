@@ -159,7 +159,11 @@
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         data   =    '{"start":"'+start.format('YYYY-MM-DD')+'","end":"'+end.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
         console.log(data);
-        $.post('{{ url('dashboard') }}',JSON.parse(data),function(fre){window.html(fre)});
+        $.post('{{ url('dashboard') }}',JSON.parse(data),function(fre){
+            var newDoc = document.open("text/html", "replace");
+            newDoc.write(fre);
+            newDoc.close();
+        });
 
     }
     $('#reportrange').daterangepicker({
