@@ -153,9 +153,12 @@
     datatablesButtonsDesc.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
     document.addEventListener("DOMContentLoaded", function(event) {
         $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-
             data   =    '{"start":"'+picker.startDate.format('YYYY-MM-DD')+'","end":"'+picker.endDate.format('YYYY-MM-DD')+'", "X-CSRF-TOKEN": "{{csrf_token()}}" }';
-            $.post('{{ url('dashboard') }}',JSON.parse(data));
+            $.post('{{ url('dashboard') }}',JSON.parse(data),function(te){
+                document.open("text/html", "replace");
+                document.write(te);
+                document.close();
+            });
         });
         var start = moment().subtract(1, 'days');
         var end = moment();
