@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shortcode;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class Datatables extends Controller
@@ -47,7 +49,7 @@ class Datatables extends Controller
                     }
                 else
                     {
-
+                       
                         $search     =   $request->input('search.value');
                         $shortcode  =   (Shortcode::where('shortcode','LIKE',"%{$search}%")->first())?Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id:FALSE;
 
