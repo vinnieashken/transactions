@@ -20,7 +20,7 @@ Route::get('/shortcode','Payments@shortcode');
 Route::get('/services','Payments@services');
 Route::post('/signin','Login@signin');
 Route::get('/transaction','Payments@transaction');
-Route::post('/alltrans','Payments@alltrans');
+Route::post('/alltrans','Datatables@alltrans');
 Auth::routes();
 Route::get('/home', 'Payments@index')->name('home');
 Route::post('/saveshortcode','Payments@saveshortcode');
@@ -33,6 +33,7 @@ Route::get('/users',function (){
     $this->data['userimg']  = \App\Models\Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
     return view('admin.modules.users',$this->data);
 });
+Route::post('/get_users','Datatables@get_users');
 Route::get('/c2btest','Payments@c2btest');
 
 Route::post('/app/c2bvalidation','Callbacks@C2BRequestValidation');
