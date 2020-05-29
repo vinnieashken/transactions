@@ -129,23 +129,42 @@
                             columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                 },
-                'excel',
+                {
+                    extend: 'print',
+                    className: 'green glyphicon glyphicon-print',
+                    title: 'Report',
+                    text: 'Print',
+                    exportOptions:
+                        {
+                            modifier:
+                                {
+                                    page: 'current'
+                                }
+                        }
+                },
+                {
+                    extend: 'excel',
+                    className: 'green glyphicon glyphicon-list-alt',
+                    title: 'Report',
+                    filename: 'Report',
+                    exportOptions:
+                        {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+                },
                 'csv',
-                'pdf',
-                'pageLength',
-                    {
-                        extend: 'print',
-                        className: 'green glyphicon glyphicon-print',
-                        title: 'Report',
-                        text: 'Print',
-                        exportOptions:
-                            {
-                                modifier:
-                                    {
-                                        page: 'current'
-                                    }
-                            }
-                    }
+                {
+                    extend: 'pdf',
+                    className: 'green glyphicon glyphicon-file',
+                    title: 'Report',
+                    filename: 'Report',
+                    exportOptions:
+                        {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+                },
+                'pageLength'
+
             ],
             "lengthMenu": [
                 [ 10, 25, 50,100,500,1000, -1 ],
