@@ -118,7 +118,14 @@
                 { "data": "transaction_time" },
                 { "data": "amount" }
             ]
-       ,"order": [[ 7, "desc" ]]
+       ,"order": [[ 7, "desc" ]],
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
 
 
         });

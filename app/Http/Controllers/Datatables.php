@@ -49,7 +49,7 @@ class Datatables extends Controller
                     }
                 else
                     {
-                       
+
                         $search     =   $request->input('search.value');
                         $shortcode  =   (Shortcode::where('shortcode','LIKE',"%{$search}%")->first())?Shortcode::where('shortcode','LIKE',"%{$search}%")->first()->id:FALSE;
 
