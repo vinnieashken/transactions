@@ -121,11 +121,31 @@
             "order": [[ 7, "desc" ]],
             "dom": 'Bfrtip',
             "buttons": [
-                'copy',
+                {
+                    extend: 'copy',
+                    className: 'green glyphicon glyphicon-duplicate',
+                    exportOptions:
+                        {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+                },
                 'excel',
                 'csv',
                 'pdf',
-                'pageLength'
+                'pageLength',
+                    {
+                        extend: 'print',
+                        className: 'green glyphicon glyphicon-print',
+                        title: 'Report',
+                        text: 'Print',
+                        exportOptions:
+                            {
+                                modifier:
+                                    {
+                                        page: 'current'
+                                    }
+                            }
+                    }
             ],
             "lengthMenu": [
                 [ 10, 25, 50,100,500,1000, -1 ],
