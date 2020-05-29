@@ -4,8 +4,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <div class="text-right"><button class="btn btn-default" data-toggle="modal" data-target="#addModal">
-                    <i class="align-middle" data-feather="plus"></i> Add Shortcode</button>
+            <div class="text-right">
+                <button class="btn btn-default" data-toggle="modal" data-target="#addModal">
+                    <i class="align-middle" data-feather="plus"></i> Add User
+                </button>
             </div>
         </div>
         <div class="card-body">
