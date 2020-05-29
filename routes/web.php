@@ -29,8 +29,8 @@ Route::post('/notify', 'Payments@startnotification');
 Route::post('/addservice','Payments@addservice');
 Route::post('/editservice','Payments@editservice');
 Route::get('/users',function (){
-    $this->data['user']     = Role::where('user_id', \Auth::User()->id)->where('access_name', 'users')->first();
-    $this->data['userimg']  = Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
+    $this->data['user']     = \App\Models\Role::where('user_id', \Auth::User()->id)->where('access_name', 'users')->first();
+    $this->data['userimg']  = \App\Models\Role::where('user_id', \Auth::User()->id)->where('access_name', 'thumbnail')->first();
     return view('admin.modules.users',$this->data);
 });
 Route::get('/c2btest','Payments@c2btest');
