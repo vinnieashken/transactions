@@ -128,8 +128,8 @@
                 'pageLength'
             ],
             "lengthMenu": [
-                [ 10, 25, 50, -1 ],
-                [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                [ 10, 25, 50,100,500,1000, -1 ],
+                [ '10 rows', '25 rows', '50 rows','100 rows','500 rows', '1000 rows','Show all' ]
             ],
 
 
