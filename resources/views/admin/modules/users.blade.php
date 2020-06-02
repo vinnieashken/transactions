@@ -59,50 +59,50 @@
                             <div class="form-group">
                                 <label for="users" class="control-label">Finance : </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Reports</label>
+                                    <input class="form-check-input" type="checkbox" name="roles[finance][reports]" id="reports" value="1">
+                                    <label class="form-check-label" for="reports">Reports</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">B2C</label>
+                                    <input class="form-check-input" type="checkbox" name="roles[finance][b2c]"  id="b2c"  value="1">
+                                    <label class="form-check-label" for="b2c">B2C</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">B2B</label>
+                                    <input class="form-check-input" type="checkbox"  name="roles[finance][b2b]" id="b2b" value="">
+                                    <label class="form-check-label" for="b2b">B2B</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Refund</label>
+                                    <input class="form-check-input" type="checkbox"  name="roles[finance][refund]" id="refund" value="1">
+                                    <label class="form-check-label" for="refund">Refund</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Balance</label>
+                                    <input class="form-check-input" type="checkbox"  name="roles[finance][balance]" id="balance" value="1">
+                                    <label class="form-check-label" for="balance">Balance</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Approval</label>
+                                    <input class="form-check-input" type="checkbox"  name="roles[finance][approval]" id="approvals" value="1">
+                                    <label class="form-check-label" for="Approvals">Approval</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="users" class="control-label">Product : </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Create Shortcode</label>
+                                    <input class="form-check-input" type="checkbox" name="roles[product][shortcode]" id="shortcode" value="1">
+                                    <label class="form-check-label" for="shortcode">Create Shortcode</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Create Service</label>
+                                    <input class="form-check-input" type="checkbox" name="roles[product][service]" id="services" value="1">
+                                    <label class="form-check-label" for="services">Create Service</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="users" class="control-label">Users : </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Add</label>
+                                    <input class="form-check-input" type="checkbox" name="roles[user][add]" id="user_add" value="1">
+                                    <label class="form-check-label" for="user_add">Add</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Update</label>
+                                    <input class="form-check-input" type="checkbox" name="roles[user][update]" id="user_update" value="1">
+                                    <label class="form-check-label" for="user_update">Update</label>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,6 @@
                                 <button type="submit" class="btn btn-primary">Invite Member</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
-
                         </div>
                     </form>
 
