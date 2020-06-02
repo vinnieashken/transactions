@@ -60,7 +60,7 @@
                                 <label for="users" class="control-label">Finance : </label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">View Reports</label>
+                                    <label class="form-check-label" for="inlineCheckbox1">Reports</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
@@ -76,11 +76,11 @@
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Query Balance</label>
+                                    <label class="form-check-label" for="inlineCheckbox2">Balance</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Approve Transactions</label>
+                                    <label class="form-check-label" for="inlineCheckbox2">Approval</label>
                                 </div>
                             </div>
                             <div class="form-group">
