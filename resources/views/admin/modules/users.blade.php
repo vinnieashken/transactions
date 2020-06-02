@@ -80,6 +80,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="users" class="control-label">Product : </label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">Create Shortcode</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label" for="inlineCheckbox2">Create Service</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="users" class="control-label">Users : </label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
