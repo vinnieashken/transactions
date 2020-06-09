@@ -30,7 +30,7 @@
                     <span class="align-middle">Transactions</span>
                 </a>
             </li>
-            <li class="sidebar-item">
+            {{--<li class="sidebar-item">
                 <a href="#dashboards" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
                     <i class="align-middle" data-feather="shield"></i>
                     <span class="align-middle">Financial Services</span>
@@ -41,7 +41,7 @@
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ url("account_balance") }}">Account Balance</a></li>
                     <li class="sidebar-item"><a class="sidebar-link" href="{{ url("b2b") }}">B2B</a></li>
                 </ul>
-            </li>
+            </li>--}}
             <li class="sidebar-header">
                Users
             </li>
@@ -56,15 +56,15 @@
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Profile</span>
                 </a>
             </li>
-            <li class="sidebar-header">
+          {{--  <li class="sidebar-header">
                 Settings
-            </li>
+            </li>--}}
 
-            <li class="sidebar-item">
+            {{--<li class="sidebar-item">
                 <a class="sidebar-link font-weight-bold" href="{{ url("documentation") }}">
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Documentation</span>
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </div>
 </nav>
