@@ -54,7 +54,7 @@
                             <label for="email" class="control-label">Email</label>
                             <input type="email" name="email" id="email" class="form-control">
                         </div>
-                        <div class="form-group">
+                       {{-- <div class="form-group">
                             <label for="roles" class="control-label">Roles</label>
                             <div class="form-group">
                                 <label for="users" class="control-label">Finance : </label>
@@ -82,7 +82,7 @@
                                     <input class="form-check-input" type="checkbox"  name="roles[finance][approval]" id="approvals" value="1">
                                     <label class="form-check-label" for="Approvals">Approval</label>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="form-group">
                                 <label for="users" class="control-label">Product : </label>
                                 <div class="form-check form-check-inline">
