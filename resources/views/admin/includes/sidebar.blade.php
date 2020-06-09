@@ -51,11 +51,11 @@
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">User Management</span>
                 </a>
             </li>
-            <li class="sidebar-item">
+            {{--<li class="sidebar-item">
                 <a class="sidebar-link font-weight-bold" href="{{ url("profile") }}">
                     <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Profile</span>
                 </a>
-            </li>
+            </li>--}}
           {{--  <li class="sidebar-header">
                 Settings
             </li>--}}
