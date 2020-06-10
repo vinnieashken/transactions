@@ -34,6 +34,9 @@ Route::get('/users',function (){
     return view('admin.modules.users',$this->data);
 });
 Route::post('/get_users','Datatables@get_users');
+Route::post('/adduser','Payments@add_user');
+Route::post('/edituser','Payments@edit_user');
+Route::post('/updaterecord','Payments@updaterecord');
 Route::get('/c2btest','Payments@c2btest');
 
 Route::post('/app/c2bvalidation','Callbacks@C2BRequestValidation');

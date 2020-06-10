@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmail;
 use App\Models\Role;
 use App\Models\Service;
 use App\Models\Shortcode;
 use App\Models\Setting;
 use App\Models\Transaction;
+use App\Models\User_meta;
 use App\User;
 use Illuminate\Http\Request;
 use App\Utils\Mpesa;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 
@@ -304,4 +307,63 @@ class Payments extends Controller
 		        					 ->set_output(json_encode($x));
 		        	}
 			}
-	}
+		public function add_user(Request $request)
+            {
+                $validatedData = $request->validate([
+                    'email'                =>  'required|unique:email',
+                    'fullname'             =>  'required',
+
+                ]);
+                if($validatedData)
+                    {
+                        $user           =   new User();
+                        $user->name     =   $request->fullname;
+                        $user->email    =   $request->email;
+                        $user->status   =   1;
+                        $req            =   $user->save();
+                        if($req)
+                        {
+                            $usermeta               =   new User_meta();
+                            $usermeta->user_id      =   $req->id;
+                            $usermeta->access_name  =   'roles';
+                            $usermeta->access_value =   serialize($request->roles);
+                            $usermeta->save();
+
+                            $data['email']      = $request->email;
+                            $data['subject']    = $esub;
+                            $data['cc']         =>  ''
+
+                            SendEmail::dispatch($data);
+                            return array('status'=>TRUE,'msg'=>'User created successful','header'=>'User');
+                        }
+                        else
+                            {
+                                return array('status'=>False,'msg'=>'User creation failed','header'=>'User');
+                            }
+                    }
+                else
+                    {
+                        return array('status'=>FALSE,'msg'=>$validatedData->errors());
+                    }
+            }
+        public function edit_user(Request $request)
+            {
+
+            }
+        public function updaterecord(Request $request)
+            {
+
+                $res = DB::table($request->table)
+                        ->where('id', (int)$request->id)
+                        ->update([$request->column => $request->value]);
+                if($res)
+                    {
+                        return array('status'=>TRUE,'msg'=>'Record update successful','header'=>ucfirst($request->table));
+                    }
+                else
+                    {
+
+                        return array('status'=>False,'msg'=>'Record update failed','header'=>ucfirst($request->table));
+                    }
+            }
+    }

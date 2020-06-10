@@ -1,5 +1,58 @@
 <script>
     $(document).ready(function(){
+        $(document).on('click','.updaterecord',function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('updaterecord') }}',
+                headers: { "X-CSRF-TOKEN":"{{csrf_token()}}" },
+                data: {"id":$(this).data("id"),"table":$(this).data("table"),"column":$(this).data("column"),"value":$(this).data("value")},
+                success: function (Mess) {
+                    if (Mess.status == true) {
+                        toastr.success(Mess.msg, Mess.header, {
+                            timeOut: 1000,
+                            closeButton: true,
+                            progressBar: true,
+                            newestOnTop: true,
+                            onHidden: function () {
+                                //window.location.reload();
+                            }
+                        });
+
+
+                    } else {
+                        toastr.error(Mess.msg, Mess.header, {
+                            timeOut: 1000,
+                            closeButton: true,
+                            progressBar: true,
+                            newestOnTop: true,
+                            onHidden: function () {
+                                //window.location.reload();
+                            }
+                        });
+                    }
+                },
+                error: function (f) {
+                    console.log(f);
+                    $.each(f.responseJSON.errors, function (key, val) {
+                        toastr.error(val[0], f.responseJSON.message, {
+                            timeOut: 1000,
+                            closeButton: true,
+                            progressBar: true,
+                            newestOnTop: true,
+                            onHidden: function () {
+                                window.location.reload();
+                            }
+                        });
+
+                    });
+
+
+                }
+
+            });
+
+        });
         $(document).on('submit','.create_form',function(e){
             e.preventDefault();
             var frm = $(this);
@@ -95,7 +148,77 @@
             }
         });
 
+        $('#userstable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                "url": "{{ url('get_users') }}",
+                "dataType": "json",
+                "type": "POST",
+                "data":{ _token: "{{csrf_token()}}"}
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "name" },
+                { "data": "email" },
+                { "data": "status" },
+                { "data": "action" }
+            ],
+            "order": [[ 0, "desc" ]],
+            "dom": 'Bfrtip',
+            "buttons": [
+                {
+                    extend: 'copy',
+                    className: 'green glyphicon glyphicon-duplicate',
+                    exportOptions:
+                        {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+                },
+                {
+                    extend: 'print',
+                    className: 'green glyphicon glyphicon-print',
+                    title: 'Report',
+                    text: 'Print',
+                    exportOptions:
+                        {
+                            modifier:
+                                {
+                                    page: 'current'
+                                }
+                        }
+                },
+                {
+                    extend: 'excel',
+                    className: 'green glyphicon glyphicon-list-alt',
+                    title: 'Report',
+                    filename: 'Report',
+                    exportOptions:
+                        {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+                },
+                'csv',
+                {
+                    extend: 'pdf',
+                    className: 'green glyphicon glyphicon-file',
+                    title: 'Report',
+                    filename: 'Report',
+                    exportOptions:
+                        {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+                },
+                'pageLength'
 
+            ],
+            "lengthMenu": [
+                [ 10, 25, 50,100,500,1000,5000,10000,18446744073709551615 ],
+                [ '10 rows', '25 rows', '50 rows','100 rows','500 rows', '1,000 rows','5,000 rows','10,000 rows','Show all' ]
+            ],
+
+
+        });
 
 
         $('#transactions').DataTable({

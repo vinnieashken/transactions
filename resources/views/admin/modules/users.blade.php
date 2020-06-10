@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="users-table" class="table table-striped table-hover custom-list-table">
+            <table id="userstable" class="table table-striped table-hover custom-list-table">
                 <thead>
                 <tr>
                     <th>*</th>
@@ -45,7 +45,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" class="form form-horizontal">
+                    <form action="{{ url('adduser') }}" class="form form-horizontal">
                         <div class="form-group">
                             <label for="name" class="control-label">Name</label>
                             <input type="text" name="fullname" id="name" class="form-control">
@@ -56,33 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="roles" class="control-label">Roles</label>
-                            {{--<div class="form-group">
-                                <label for="users" class="control-label">Finance : </label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="roles[finance][reports]" id="reports" value="1">
-                                    <label class="form-check-label" for="reports">Reports</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="roles[finance][b2c]"  id="b2c"  value="1">
-                                    <label class="form-check-label" for="b2c">B2C</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox"  name="roles[finance][b2b]" id="b2b" value="">
-                                    <label class="form-check-label" for="b2b">B2B</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox"  name="roles[finance][refund]" id="refund" value="1">
-                                    <label class="form-check-label" for="refund">Refund</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox"  name="roles[finance][balance]" id="balance" value="1">
-                                    <label class="form-check-label" for="balance">Balance</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox"  name="roles[finance][approval]" id="approvals" value="1">
-                                    <label class="form-check-label" for="Approvals">Approval</label>
-                                </div>
-                            </div>--}}
+
                             <div class="form-group">
                                 <label for="users" class="control-label">Product : </label>
                                 <div class="form-check form-check-inline">
