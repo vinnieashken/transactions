@@ -330,10 +330,10 @@ class Payments extends Controller
                             $usermeta->save();
 
                             $data['email']      = $request->email;
-                            $data['subject']    = $esub;
-                            $data['cc']         =>  ''
+                            $data['subject']    = "Welcome ".$request->fullname;
+                            $data['cc']         =  '';
 
-                            SendEmail::dispatch($data);
+                            SendEmail::dispatch((object)$data);
                             return array('status'=>TRUE,'msg'=>'User created successful','header'=>'User');
                         }
                         else
