@@ -45,7 +45,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('adduser') }}" class="form form-horizontal" method="post">
+                    <form action="{{ url('adduser') }}" class="form form-horizontal" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="name" class="control-label">Name</label>
