@@ -310,7 +310,7 @@ class Payments extends Controller
 		public function add_user(Request $request)
             {
                 $validatedData = $request->validate([
-                    'email'                =>  'required|unique:email',
+                    'email'                =>  'required|unique:users',
                     'fullname'             =>  'required',
 
                 ]);
