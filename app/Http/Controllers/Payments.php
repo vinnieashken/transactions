@@ -319,6 +319,7 @@ class Payments extends Controller
                         $user           =   new User();
                         $user->name     =   $request->fullname;
                         $user->email    =   $request->email;
+                        $user->username =   "Invite";
                         $user->status   =   1;
                         $req            =   $user->save();
                         if($req)
