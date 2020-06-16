@@ -45,7 +45,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('adduser') }}" class="form form-horizontal">
+                    <form action="{{ url('adduser') }}" class="form form-horizontal" method="post">
                         <div class="form-group">
                             <label for="name" class="control-label">Name</label>
                             <input type="text" name="fullname" id="name" class="form-control">
