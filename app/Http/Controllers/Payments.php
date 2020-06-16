@@ -320,6 +320,7 @@ class Payments extends Controller
                         $user->name     =   $request->fullname;
                         $user->email    =   $request->email;
                         $user->username =   "Invite";
+                        $user->password =   "Mpesa";
                         $user->status   =   1;
                         $req            =   $user->save();
                         if($req)
