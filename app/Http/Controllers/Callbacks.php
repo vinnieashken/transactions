@@ -471,6 +471,20 @@ class Callbacks
                 $data['type']   =   'vas';
                 $url            =   array('https://vas.standardmedia.co.ke/api/paymentRequest/confirm','https://ktnkenya.com/msape/public/api/mobile/transact');
             }
+            if ($msape == 'AC')
+            {
+                $param          =   array(
+                    'sender_phone'  =>  $moneyfromnumber,
+                    'amount'        =>  $amount ,
+                    'transaction'   =>  $account,
+                    'type'          =>  $channel,
+                    'mpesa_code'    =>  $ref,
+                    'origin'        => 'vas'
+                );
+//                $param          =   json_encode($param);
+                $data['type']   =   'vas';
+                $url            =   array('https://tutorsoma.standardmedia.co.ke/api/academy/subscription/confirm');
+            }
             if ($epaper == 'ELE')
             {
                 $param          =   array(
@@ -527,7 +541,7 @@ class Callbacks
                     $url = array('https://www.standardmedia.co.ke/pds_payment');
                 }
             }
-            if ($ticket_hub != 'TK' && $ticket_hub != 'KZ' && $epaper != 'EPK'  && $epaper != 'PDS' && $digger != 'D' && $digger != 'M' && $msape != 'BD' && $msape != 'VS' && $ticket_hub != 'TN' && $epaper != 'ELE')
+            if ($ticket_hub != 'TK' && $ticket_hub != 'AC' && $ticket_hub != 'KZ' && $epaper != 'EPK'  && $epaper != 'PDS' && $digger != 'D' && $digger != 'M' && $msape != 'BD' && $msape != 'VS' && $ticket_hub != 'TN' && $epaper != 'ELE')
             {
                 $account        =   'eaa' . $account;
                 $param          =   array(

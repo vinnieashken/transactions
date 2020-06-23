@@ -325,6 +325,7 @@ class Payments extends Controller
                         $req            =   $user->save();
                         if($req)
                         {
+
                             $usermeta               =   new User_meta();
                             $usermeta->user_id      =   $req->id;
                             $usermeta->access_name  =   'roles';
