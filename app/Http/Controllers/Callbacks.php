@@ -482,7 +482,7 @@ class Callbacks
                     'origin'        => 'vas'
                 );
 //                $param          =   json_encode($param);
-                $data['type']   =   'vas';
+                $data['type']   =   'Tutorsoma Academy';
                 $url            =   array('https://tutorsoma.standardmedia.co.ke/api/academy/subscription/confirm');
             }
             if ($epaper == 'ELE')
