@@ -499,6 +499,20 @@ class Callbacks
                 $data['type']   =   'E-learning';
                 $url            =   array('https://tutorsoma.standardmedia.co.ke/api/payments/mpesa/callback');
             }
+            if ($epaper == 'TIC')
+                {
+                    $param          =   array(
+                        'sender_phone'  =>  $moneyfromnumber,
+                        'amount'        =>  $amount ,
+                        'transaction'   =>  $account,
+                        'type'          =>  $channel,
+                        'mpesa_code'    =>  $ref,
+                        'origin'        => 'Ticketing'
+                    );
+    //                $param          =   json_encode($param);
+                    $data['type']   =   'Ticketing';
+                    $url            =   array('https://events.standardmedia.co.ke/api/payment/confirm');
+                }
             if ($msape == 'BD')
             {
                 $param          =   array(
@@ -541,7 +555,7 @@ class Callbacks
                     $url = array('https://www.standardmedia.co.ke/pds_payment');
                 }
             }
-            if ($ticket_hub != 'TK' && $ticket_hub != 'AC' && $ticket_hub != 'KZ' && $epaper != 'EPK'  && $epaper != 'PDS' && $digger != 'D' && $digger != 'M' && $msape != 'BD' && $msape != 'VS' && $ticket_hub != 'TN' && $epaper != 'ELE')
+            if ($ticket_hub != 'TK' && $ticket_hub != 'AC' && $ticket_hub != 'KZ' && $epaper != 'EPK' && $epaper != 'TIC' && $epaper != 'PDS' && $digger != 'D' && $digger != 'M' && $msape != 'BD' && $msape != 'VS' && $ticket_hub != 'TN' && $epaper != 'ELE')
             {
                 $account        =   'eaa' . $account;
                 $param          =   array(
@@ -591,7 +605,7 @@ class Callbacks
         $eto        =   "onlineaccounts@standardmedia.co.ke";
         $ecc        =   ["jkidambi@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke", "nmangala@standardmedia.co.ke",
                         "bsikuku@standardmedia.co.ke", "hmadadi@standardmedia.co.ke","kanami@standardmedia.co.ke",
-                        "dkiptugen@standardmedia.co.ke"];
+                        "mshahi@standardmedia.co.ke"];
         $esub       =   "MPESA INSTANT PAYMENT NOTIFICATION - PAYBILL NUMBER 505604";
 //        $emsg       =   '<p> This is an email alert to inform you that we have received MPESA Payment</p>' .
 //            '<p> Transaction ID: ' . $dt['ref'] . '</p>
@@ -672,7 +686,7 @@ class Callbacks
             $data->email = "vinnieashken@gmail.com";
             $data->cc   =   ["jkidambi@standardmedia.co.ke", "cronoh@standardmedia.co.ke", "dokuthe@standardmedia.co.ke", "nmangala@standardmedia.co.ke",
                 "bsikuku@standardmedia.co.ke", "hmadadi@standardmedia.co.ke","kanami@standardmedia.co.ke",
-                "dkiptugen@standardmedia.co.ke"];
+                "mshahi@standardmedia.co.ke"];
             $data->ref = 'MTS35XZC' ;
             $data->msisdn = '254720566887' ;
             $data->customer_name = 'Dave mahuru';
